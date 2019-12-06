@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../servicios/usuario-service';
-import { Usuario } from '../modelos/usuario';
-import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { UsuarioService } from '../services/usuario-service';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { AuthenticationService } from '../services/authentication.service';
+import { HttpClient } from '@angular/common/http';
+import { first, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -10,27 +12,39 @@ import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
   username: string;
   pass: string;
-  usuarios = UsuarioService.users;
+  usuarios: any[] = UsuarioService.users;
 
-  constructor() {}
+  constructor(
+    private http: HttpClient,
+    private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      username: [''],
+      password: ['']
+    });
+    this.authenticationService.logout();
+  }
 
-  login() {
-    console.log('hola');
-    if (this.usuarios.filter(u => {
-      return (u.username === this.username);
-    })) {
-      window.alert('correcto');
-     } else {
-       window.alert('incorrecto');
-     }
-    // if (UsuarioService.users.indexOf(this.usuario) === -1) {
-    //   window.alert('incorrecto');
-    // } else {
-    //   window.alert('correcto');
-    // }
+  onSubmit() {
+    //const exist = this.usuarios.some(u => u.username === this.username);
+    this.authenticationService
+      .login(this.username, this.pass)
+      .pipe(
+        first(),
+        tap(valor => console.log('mi valor', valor))
+      )
+      .subscribe(
+        data => {
+          console.log('hola');
+      },
+      error => {
+          console.error(error);
+      });
   }
 }
