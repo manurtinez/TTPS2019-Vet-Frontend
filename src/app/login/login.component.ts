@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { first, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
+    private router: Router,
     private authenticationService: AuthenticationService
   ) {}
 
@@ -32,7 +35,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    //const exist = this.usuarios.some(u => u.username === this.username);
     this.authenticationService
       .login(this.username, this.pass)
       .pipe(
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         data => {
-          console.log('hola');
+          console.log();
       },
       error => {
           console.error(error);
