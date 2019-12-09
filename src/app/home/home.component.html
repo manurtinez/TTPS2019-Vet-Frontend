@@ -1,2 +1,4 @@
 <h1>Bienvenido, {{user}}!</h1>
-<button (click)="iraPerfil()">Mi Perfil</button>
+<button (click)="iraPerfil()">Mi Perfil</button><br>
+<button class="btn btn-dark" (click)="this.visible = !this.visible">Agregar Mascota</button>
+<app-agregar-mascota *ngIf=this.visible></app-agregar-mascota>

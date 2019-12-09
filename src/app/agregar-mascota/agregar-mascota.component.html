@@ -1,0 +1,32 @@
+<p>agregar-mascota works!</p>
+<form>
+  <div class="form-group">
+    <label for="nombre">Nombre de mascota</label>
+    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="mascota.nombre">
+  </div>
+  <div class="form-group">
+    <label for="sexo">sexo</label>
+    <input type="text" class="form-control" id="sexo" name="sexo" [(ngModel)]="mascota.sexo">
+  </div>
+  <div class="form-group form-check">
+    <label for="especie">especie</label>
+    <input type="text" class="form-control" id="especie" name="especie" [(ngModel)]="mascota.especie">
+  </div>
+  <div class="form-group form-check">
+    <label for="color">color</label>
+    <input type="text" class="form-control" id="color" name="color" [(ngModel)]="mascota.color">
+  </div>
+  <div class="form-group form-check">
+    <label for="raza">raza</label>
+    <input type="text" class="form-control" id="raza" name="raza" [(ngModel)]="mascota.raza">
+  </div>
+  <div class="form-group form-check">
+    <label for="senas">senas</label>
+    <input type="text" class="form-control" id="senas" name="senas" [(ngModel)]="mascota.senas">
+  </div>
+  <div class="form-group form-check">
+    <label for="nacimiento">nacimiento</label>
+    <input type="date" class="form-control" id="nacimiento" name="nacimiento" [(ngModel)]="mascota.nacimiento">
+  </div>
+  <button type="button" (click) = "agregarMascota()" class="btn btn-primary">Agregar</button>
+</form>

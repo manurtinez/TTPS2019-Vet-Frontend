@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  public visible: true;
 
   public user: string;
   constructor(private route: ActivatedRoute, private router: Router) { }
