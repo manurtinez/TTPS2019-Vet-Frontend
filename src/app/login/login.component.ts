@@ -5,7 +5,6 @@ import { AuthenticationService } from '../services/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { first, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-login',
@@ -43,7 +42,8 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         data => {
-          console.log();
+          console.log(localStorage.getItem('currentUser'));
+          this.router.navigateByUrl('/home');
       },
       error => {
           console.error(error);

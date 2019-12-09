@@ -5,12 +5,12 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable
-({ providedIn: 'root'})
+  ({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -19,21 +19,21 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string){
+  login(username: string, password: string) {
     const user = new User(username, password);
     console.log(user);
     console.log(JSON.stringify(user));
-    return this.http.post<any>('http://localhost:8080/HistoriaClinicaMascotas/autenticacion', user);
-    // .pipe(map(credentials => {
-    //   if (credentials && credentials.token) {
-    //     localStorage.setItem('currentUser', JSON.stringify(credentials));
-    //     this.currentUserSubject.next(credentials);
-    //   }
-    //   return credentials;
-    // }));
+    return this.http.post<any>('http://localhost:8080/HistoriaClinicaMascotas/autenticacion', user)
+      .pipe(map(credentials => {
+        if (credentials && credentials.token) {
+          localStorage.setItem('currentUser', JSON.stringify(credentials));
+          this.currentUserSubject.next(credentials);
+        }
+        return credentials;
+      }));
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
