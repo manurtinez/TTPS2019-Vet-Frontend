@@ -1,6 +1,30 @@
-<h1>Aca va el perfil de {{user}}</h1>
-<ul>
-  <li *ngFor="let mascota of mascotas" >
-    {{mascota.nombre}}
-  </li>
-</ul>
+<div class="perfilContainer" style="background-color: antiquewhite; margin: auto; width: 50%;">
+<h1>Perfil de {{user}}</h1>
+<button class="btn btn-dark" (click)="this.visible = !this.visible">Agregar Mascota</button>
+<app-agregar-mascota *ngIf=this.visible></app-agregar-mascota>
+<h2>Mascotas de {{user}}</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Especie</th>
+      <th scope="col">Raza</th>
+      <th scope="col">Sexo</th>
+      <th scope="col">Color</th>
+      <th scope="col">Senas</th>
+      <th scope="col">Nacimiento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mascota of mascotas">
+      <th>{{mascota.nombre}}</th>
+      <th>{{mascota.especie}}</th>
+      <th>{{mascota.raza}}</th>
+      <th>{{mascota.sexo}}</th>
+      <th>{{mascota.color}}</th>
+      <th>{{mascota.senas}}</th>
+      <th>{{mascota.nacimiento}}</th>
+    </tr>
+  </tbody>
+</table>
+</div>

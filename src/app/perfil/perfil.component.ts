@@ -11,6 +11,7 @@ import { DuenoService } from '../services/dueno-service';
 export class PerfilComponent implements OnInit {
 
   public user: string;
+  public visible: true;
   public mascotas: Mascota[];
   error = '';
   constructor(private route: ActivatedRoute, private duenoservice: DuenoService) { }

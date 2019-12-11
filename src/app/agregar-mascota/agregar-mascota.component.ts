@@ -20,10 +20,10 @@ export class AgregarMascotaComponent implements OnInit {
   agregarMascota() {
     this.mascotaService.agregarMascota(this.mascota).subscribe(
       data => {
-        console.log('mascotita');
+        console.log(data);
       },
       error => {
-        console.log('no mascotita');
+        console.log(error);
       }
     );
   }
