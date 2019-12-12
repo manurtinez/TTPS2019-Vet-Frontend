@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   pass: string;
   usuarios: any[] = UsuarioService.users;
 
-  visible = false;
+  visibleDueno = false;
+  visibleVet = false;
 
   constructor(
     private http: HttpClient,

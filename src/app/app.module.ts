@@ -11,6 +11,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { AgregarMascotaComponent } from './agregar-mascota/agregar-mascota.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { AltaDuenoComponent } from './alta-dueno/alta-dueno.component';
+import { AltaVeterinarioComponent } from './alta-veterinario/alta-veterinario.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AltaDuenoComponent } from './alta-dueno/alta-dueno.component';
     HomeComponent,
     PerfilComponent,
     AgregarMascotaComponent,
-    AltaDuenoComponent
+    AltaDuenoComponent,
+    AltaVeterinarioComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,9 @@
   </form>
 </div>
 <div class="container">
-  <button class="btn btn-dark mt-4" (click)="this.visible = !this.visible">Agregar Dueño</button>
-  <app-alta-dueno *ngIf=this.visible></app-alta-dueno>
+  <h4 class="mt-4">Registrarse como: </h4>
+  <button class="btn btn-dark mt-4 mr-4" (click)="this.visibleDueno = !this.visibleDueno">Dueño de Mascotas</button>
+  <button class="btn btn-dark mt-4" (click)="this.visibleVet = !this.visibleVet">Veterinario</button>
+  <app-alta-dueno *ngIf=this.visibleDueno></app-alta-dueno>
+  <app-alta-veterinario *ngIf=this.visibleVet></app-alta-veterinario>
 </div>

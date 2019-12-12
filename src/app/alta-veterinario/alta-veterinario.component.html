@@ -1,0 +1,39 @@
+<div class="container mb-4 mt-4" >
+    <h2>Nuevo Veterinario</h2>
+    <form >
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input  type="text" class="form-control" placeholder="ingrese su nombre" name="nombre" [(ngModel)]="vet.nombre">
+      </div>
+      <div class="form-group">
+        <label for="apellido">Apellido:</label>
+        <input type="text" class="form-control" placeholder="ingrese su apellido" name="apellido" [(ngModel)]="vet.apellido">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" placeholder="ingrese correo electrónico" name="email" [(ngModel)]="vet.email">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Contraseña:</label>
+        <input type="password" class="form-control" placeholder="ingrese su clave" name="password" [(ngModel)]="vet.password">
+      </div>
+      <div class="form-group">
+        <label for="telefono">Telefono:</label>
+        <input type="number" class="form-control" placeholder="ingrese su telefono" name="telefono" [(ngModel)]="vet.telefono">
+      </div>
+      <div class="form-group">
+         <label for="nomClinica">Nombre de la clínica:</label>
+        <input  type="text" class="form-control" placeholder="ingrese el nombre de la clinica" name="nomClinica" [(ngModel)]="vet.nomClinica">
+      </div>
+      <div class="form-group">
+        <label for="dirClinica">Direccion de la clinica:</label>
+        <input  type="text" class="form-control" placeholder="ingrese la direccion de la clinica" name="dirClinica" [(ngModel)]="vet.dirClinica">
+      </div>
+      <div class="form-group">
+        <label for="nroMatricula">Numero de matricula:</label>
+        <input  type="number" class="form-control" placeholder="ingrese su matricula" name="nroMatricula" [(ngModel)]="vet.nroMatricula">
+      </div>
+      <button type="button" (click)="altaVeterinario()" class="btn btn-primary">Nuevo Dueno</button>
+    </form>
+  </div>
+
