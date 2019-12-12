@@ -1,41 +1,39 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="agregarMascota()">
   <div class="row">
     <div class="col">
       <label for="nombre">Nombre de mascota</label>
-      <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="mascota.nombre">
+      <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
     </div>
     <div class="col">
       <label for="sexo">sexo</label>
-      <input type="text" class="form-control" id="sexo" name="sexo" [(ngModel)]="mascota.sexo">
+      <input type="text" class="form-control" id="sexo" name="sexo" formControlName="sexo">
     </div>
   </div>
   <div class="row">
     <div class="col">
       <label for="especie">especie</label>
-      <input type="text" class="form-control" id="especie" name="especie" [(ngModel)]="mascota.especie">
+      <input type="text" class="form-control" id="especie" name="especie" formControlName="especie">
     </div>
     <div class="col">
       <label for="color">color</label>
-      <input type="text" class="form-control" id="color" name="color" [(ngModel)]="mascota.color">
+      <input type="text" class="form-control" id="color" name="color" formControlName="color">
     </div>
   </div>
   <div class="row">
     <div class="col">
       <label for="raza">raza</label>
-      <input type="text" class="form-control" id="raza" name="raza" [(ngModel)]="mascota.raza">
+      <input type="text" class="form-control" id="raza" name="raza" formControlName="raza">
     </div>
     <div class="col">
       <label for="senas">senas</label>
-      <input type="text" class="form-control" id="senas" name="senas" [(ngModel)]="mascota.senas">
+      <input type="text" class="form-control" id="senas" name="senas" formControlName="senas">
     </div>
   </div>
   <div class="row">
     <div class="col">
       <label for="nacimiento">nacimiento</label>
-      <input type="date" class="form-control" id="nacimiento" name="nacimiento" [(ngModel)]="mascota.nacimiento">
+      <input type="date" class="form-control" id="nacimiento" name="nacimiento" formControlName="nacimiento">
     </div>
-    <div class="col">
-      <button type="button" (click)="agregarMascota()" style="margin-top: 30px;" class="btn btn-primary">Agregar</button>
-    </div>
+    <button type="submit" [disabled]="!form.valid" style="margin-top: 30px;" class="btn btn-primary">Agregar</button>
   </div>
 </form>

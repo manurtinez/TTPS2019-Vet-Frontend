@@ -52,4 +52,18 @@ export class LoginComponent implements OnInit {
           console.error('error');
       });
   }
+
+  toggleDueno() {
+    this.visibleDueno = !this.visibleDueno;
+    if (this.visibleVet) {
+      this.visibleVet = !this.visibleVet;
+    }
+  }
+
+  toggleVet() {
+    this.visibleVet = !this.visibleVet;
+    if (this.visibleDueno) {
+      this.visibleDueno = !this.visibleDueno;
+    }
+  }
 }

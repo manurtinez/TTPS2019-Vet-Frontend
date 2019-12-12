@@ -16,8 +16,8 @@
 </div>
 <div class="container">
   <h4 class="mt-4">Registrarse como: </h4>
-  <button class="btn btn-dark mt-4 mr-4" (click)="this.visibleDueno = !this.visibleDueno">Dueño de Mascotas</button>
-  <button class="btn btn-dark mt-4" (click)="this.visibleVet = !this.visibleVet">Veterinario</button>
+  <button class="btn btn-dark mt-4 mr-4" (click)="toggleDueno()">Dueño de Mascotas</button>
+  <button class="btn btn-dark mt-4" (click)="toggleVet()">Veterinario</button>
   <app-alta-dueno *ngIf=this.visibleDueno></app-alta-dueno>
   <app-alta-veterinario *ngIf=this.visibleVet></app-alta-veterinario>
 </div>
