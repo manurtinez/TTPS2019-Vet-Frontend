@@ -21,6 +21,8 @@ export class AgregarMascotaComponent implements OnInit {
     this.mascotaService.agregarMascota(this.mascota).subscribe(
       data => {
         console.log(data);
+        window.alert('mascota agregada con exito!');
+        window.location.reload();
       },
       error => {
         console.log(error);

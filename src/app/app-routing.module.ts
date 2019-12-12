@@ -7,9 +7,9 @@ import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent, data: JSON.parse(localStorage.getItem('currentUser'))},
-  {path: 'perfil', component: PerfilComponent, data: JSON.parse(localStorage.getItem('currentUser'))}
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'perfil', component: PerfilComponent}
 ];
 
 @NgModule({

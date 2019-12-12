@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  public user: string;
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.user = this.route.snapshot.data.usuario;
+    //this.user = this.route.snapshot.data.usuario;
   }
 
   iraPerfil(){

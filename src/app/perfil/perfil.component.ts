@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Mascota } from '../models/mascota';
 import { DuenoService } from '../services/dueno-service';
+import { AuthenticationService } from '../services/authentication.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-perfil',
@@ -10,14 +12,13 @@ import { DuenoService } from '../services/dueno-service';
 })
 export class PerfilComponent implements OnInit {
 
-  public user: string;
   public visible: true;
   public mascotas: Mascota[];
   error = '';
-  constructor(private route: ActivatedRoute, private duenoservice: DuenoService) { }
+  constructor(private duenoservice: DuenoService) {
+   }
 
   ngOnInit() {
-    this.user = this.route.snapshot.data.usuario;
     this.duenoservice.getAllMascotas().subscribe(
       data => {
         this.mascotas = data;
@@ -26,7 +27,7 @@ export class PerfilComponent implements OnInit {
         this.error = 'no se pudieron recuperar las mascotas';
         console.error(error);
       }
-    )
+    );
   }
 
 }

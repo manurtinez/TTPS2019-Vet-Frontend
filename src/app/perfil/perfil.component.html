@@ -1,8 +1,8 @@
-<div class="perfilContainer" style="background-color: antiquewhite; margin: auto; width: 50%;">
-<h1>Perfil de {{user}}</h1>
+<div class="perfilContainer" style="background-color: antiquewhite; width: 700px;">
+<h1>Pagina de perfil</h1>
 <button class="btn btn-dark" (click)="this.visible = !this.visible">Agregar Mascota</button>
 <app-agregar-mascota *ngIf=this.visible></app-agregar-mascota>
-<h2>Mascotas de {{user}}</h2>
+<h2>Listado de mascotas</h2>
 <table class="table">
   <thead>
     <tr>
