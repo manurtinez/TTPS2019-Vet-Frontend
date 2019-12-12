@@ -9,20 +9,24 @@ import { DuenoService } from '../services/dueno-service';
 })
 
 export class AltaDuenoComponent  implements OnInit {
-  dueno: Dueno = new Dueno ('', '', '', '', 0);
+  dueno: Dueno = new Dueno ('', '', '', '', null);
   constructor(private duenoService: DuenoService) { }
 
   ngOnInit() {  }
   altaDueno() {
     console.log(this.dueno);
-    this.duenoService.agregarDueno(this.dueno).subscribe(
-      data => {
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    if (this.duenoService.validar(this.dueno)) {
+      this.duenoService.agregarDueno(this.dueno).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      alert('espacios en blanco');
+    }
   }
 
 }

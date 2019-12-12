@@ -9,4 +9,11 @@ export class VeterinarioService {
   public agregarVeterinario(vet: Veterinario) {
     return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/create/veterinario/`, vet);
   }
+  validar(vet: Veterinario): boolean {
+    if ((vet.nombre === '') || (vet.apellido === '') || (vet.email === '') ||
+        (vet.password === '') || (vet.telefono === null) ||  (vet.nroMatricula === null) ) {
+      return false;
+    }
+    return true;
+  }
 }

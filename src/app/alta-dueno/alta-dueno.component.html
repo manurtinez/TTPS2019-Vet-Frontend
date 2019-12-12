@@ -1,6 +1,6 @@
 <div class="container mb-4 mt-4" >
   <h2>Nuevo Dueño</h2>
-  <form >
+  <form (ngSubmit)="altaDueno()">
     <div class="form-group">
       <label for="nombre">Nombre:</label>
       <input  type="text" class="form-control" placeholder="ingrese su nombre" name="nombre" [(ngModel)]="dueno.nombre">
@@ -21,6 +21,6 @@
       <label for="telefono">Telefono:</label>
       <input type="number" class="form-control" placeholder="ingrese su telefono" name="telefono" [(ngModel)]="dueno.telefono">
     </div>
-    <button type="button" (click)="altaDueno()" class="btn btn-primary">Registrarse</button>
+    <button type="submit"  class="btn btn-primary">Registrarse</button>
   </form>
 </div>

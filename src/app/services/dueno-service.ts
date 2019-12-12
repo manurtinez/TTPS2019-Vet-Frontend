@@ -12,7 +12,13 @@ export class DuenoService {
     return this.http.get<Mascota[]>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/mascota/${id}`);
   }
 
-  public agregarDueno(dueno: Dueno) {
+  agregarDueno(dueno: Dueno) {
     return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/create/dueno/`, dueno);
+  }
+  validar(dueno: Dueno): boolean {
+    if ((dueno.nombre === '') || (dueno.apellido === '') || (dueno.email === '') || (dueno.password === '') || (dueno.telefono === null)) {
+      return false;
+    }
+    return true;
   }
 }
