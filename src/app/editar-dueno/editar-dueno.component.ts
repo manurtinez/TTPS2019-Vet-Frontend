@@ -41,9 +41,11 @@ export class EditarDuenoComponent implements OnInit {
     );
     this.duenoservice.editarDueno(d).subscribe(
       data => {
+        alert('dueno editado con exito');
         console.log(data);
       },
       error => {
+        alert('error al editar');
         console.log(error);
       }
     );

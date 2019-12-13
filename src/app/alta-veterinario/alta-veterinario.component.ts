@@ -24,9 +24,11 @@ export class AltaVeterinarioComponent implements OnInit {
       }
       this.veterinarioService.agregarVeterinario(this.vet).subscribe(
         data => {
+          alert('veterinario creado con exito');
           console.log(data);
         },
         error => {
+          alert('error al crear veterinario');
           console.log(error);
         }
       );

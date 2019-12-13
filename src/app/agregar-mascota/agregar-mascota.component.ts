@@ -47,6 +47,7 @@ export class AgregarMascotaComponent implements OnInit {
         window.location.reload();
       },
       error => {
+        alert('error al crear mascota');
         console.log(error);
       }
     );
