@@ -9,7 +9,7 @@ import { DuenoService } from '../services/dueno-service';
 })
 
 export class AltaDuenoComponent  implements OnInit {
-  dueno: Dueno = new Dueno ('', '', '', '', null);
+  dueno: Dueno = new Dueno ('', '', '',  null, '');
   constructor(private duenoService: DuenoService) { }
 
   ngOnInit() {  }
