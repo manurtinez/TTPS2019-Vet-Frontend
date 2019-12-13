@@ -9,7 +9,7 @@ import { User } from '../models/user';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  visible = false;
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
