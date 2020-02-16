@@ -21,7 +21,7 @@ export class DuenoService {
   }
 
   validar(dueno: Dueno): boolean {
-    if ((dueno.nombre === '') || (dueno.apellido === '') || (dueno.email === '') || (dueno.password === '') || (dueno.telefono === null)) {
+    if ((dueno.nombre === '') || (dueno.apellido === '') || (dueno.email === '') || (dueno.password === '')) {
       return false;
     }
     return true;

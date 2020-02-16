@@ -1,7 +1,45 @@
 <h1>Sección Mascotas</h1>
 <div class="perfilContainer" style="background-color: antiquewhite; width: 700px;">
-<button class="btn btn-dark" (click)="this.visible = !this.visible">Agregar Mascota</button>
-<app-agregar-mascota *ngIf=this.visible></app-agregar-mascota>
+<button class="btn btn-dark" (click)="this.mostrarAgregar = !this.mostrarAgregar">Agregar Mascota</button>
+<form *ngIf="this.mostrarAgregar" [formGroup]="formMascota" (ngSubmit)="agregarMascota()">
+  <div class="row">
+    <div class="col">
+      <label for="nombre">Nombre de mascota</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
+    </div>
+    <div class="col">
+      <label for="sexo">Sexo</label>
+      <input type="text" class="form-control" id="sexo" name="sexo" formControlName="sexo">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="especie">Especie</label>
+      <input type="text" class="form-control" id="especie" name="especie" formControlName="especie">
+    </div>
+    <div class="col">
+      <label for="color">Color</label>
+      <input type="text" class="form-control" id="color" name="color" formControlName="color">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="raza">Raza</label>
+      <input type="text" class="form-control" id="raza" name="raza" formControlName="raza">
+    </div>
+    <div class="col">
+      <label for="senas">Senas</label>
+      <input type="text" class="form-control" id="senas" name="senas" formControlName="senas">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="nacimiento">Nacimiento</label>
+      <input type="date" class="form-control" id="nacimiento" name="nacimiento" formControlName="nacimiento">
+    </div>
+    <button type="submit" [disabled]="!formMascota.valid" style="margin-top: 30px;" class="btn btn-primary">Agregar</button>
+  </div>
+</form>
 <h2>Listado de mascotas</h2>
 <table class="table">
   <thead>

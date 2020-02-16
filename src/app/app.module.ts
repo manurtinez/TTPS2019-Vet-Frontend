@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { AgregarMascotaComponent } from './agregar-mascota/agregar-mascota.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { AltaDuenoComponent } from './alta-dueno/alta-dueno.component';
 import { AltaVeterinarioComponent } from './alta-veterinario/alta-veterinario.component';
@@ -20,7 +19,6 @@ import { EditarDuenoComponent } from './editar-dueno/editar-dueno.component';
     LoginComponent,
     HomeComponent,
     PerfilComponent,
-    AgregarMascotaComponent,
     AltaDuenoComponent,
     AltaVeterinarioComponent,
     EditarDuenoComponent

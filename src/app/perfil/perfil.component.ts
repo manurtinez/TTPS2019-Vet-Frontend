@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Mascota } from '../models/mascota';
 import { DuenoService } from '../services/dueno-service';
-import { AuthenticationService } from '../services/authentication.service';
-import { User } from '../models/user';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ConfigFicha } from '../models/configFicha';
+import { MascotaService } from '../services/mascota-service';
 
 @Component({
   selector: 'app-perfil',
@@ -12,13 +12,24 @@ import { User } from '../models/user';
 })
 export class PerfilComponent implements OnInit {
 
-  public visible: true;
+  public mostrarAgregar: true;
+  formMascota: FormGroup;
+  private configFicha = new ConfigFicha();
   public mascotas: Mascota[];
   error = '';
-  constructor(private duenoservice: DuenoService) {
+  constructor(private duenoservice: DuenoService, private formBuilder: FormBuilder, private mascotaService: MascotaService) {
    }
 
   ngOnInit() {
+    this.formMascota = this.formBuilder.group({
+      nombre: [null, Validators.required],
+      color: [null, Validators.required],
+      especie: [null, Validators.required],
+      nacimiento: [null, Validators.required],
+      sexo: [null, Validators.required],
+      senas: [null, Validators.required],
+      raza: [null, Validators.required],
+    });
     this.duenoservice.getAllMascotas().subscribe(
       data => {
         this.mascotas = data;
@@ -28,6 +39,31 @@ export class PerfilComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  agregarMascota() {
+    console.log('hola');
+    const mascota = new Mascota(
+      this.formMascota.controls.color.value,
+      this.formMascota.controls.especie.value,
+      this.formMascota.controls.nacimiento.value,
+      this.formMascota.controls.nombre.value,
+      this.formMascota.controls.raza.value,
+      this.formMascota.controls.senas.value,
+      this.formMascota.controls.sexo.value,
+      this.configFicha
+    );
+    this.mascotaService.agregarMascota(mascota).subscribe(
+      data => {
+        console.log(data);
+        window.alert('mascota agregada con exito!');
+      },
+      error => {
+        alert('error al crear mascota');
+        console.log(error);
+      }
+    );
+    this.mascotas.push(mascota);
   }
 
 }
