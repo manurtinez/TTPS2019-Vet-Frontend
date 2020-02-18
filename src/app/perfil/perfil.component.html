@@ -1,40 +1,76 @@
 <h1>Sección Mascotas</h1>
-<div class="perfilContainer" style="background-color: antiquewhite; width: 700px;">
+<div class="perfilContainer">
   <button class="btn btn-dark" (click)="this.mostrarAgregar = !this.mostrarAgregar">Agregar Mascota</button>
   <form *ngIf="this.mostrarAgregar" [formGroup]="formMascota" (ngSubmit)="agregarMascota()">
     <div class="row">
       <div class="col">
         <label for="nombre">Nombre de mascota</label>
+        <div class="form-check form-check-inline">
+          <input type="checkbox" name="checkNombre" class="form-check-input" id="">
+          <label for="checkNombre">¿Público?</label>
+        </div>
         <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
       </div>
       <div class="col">
         <label for="sexo">Sexo</label>
-        <input type="text" class="form-control" id="sexo" name="sexo" formControlName="sexo">
+        <div class="form-check form-check-inline">
+          <input type="checkbox" name="checkSexo" class="form-check-input" id="">
+          <label for="checkSexo">¿Público?</label>
+        </div>
+        <br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" formControlName="sexo" id="sexoM" value="masculino">
+          <label class="form-check-label" for="sexoM">Masculino</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" formControlName="sexo" id="sexoF" value="femenino">
+          <label class="form-check-label" for="sexoF">Femenino</label>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="especie">Especie</label>
+        <div class="form-check form-check-inline">
+          <input type="checkbox" name="checkEspecie" class="form-check-input" id="">
+          <label for="checkEspecie">¿Público?</label>
+        </div>
         <input type="text" class="form-control" id="especie" name="especie" formControlName="especie">
       </div>
       <div class="col">
         <label for="color">Color</label>
+        <div class="form-check form-check-inline">
+          <input type="checkbox" name="checkColor" class="form-check-input" id="">
+          <label for="checkColor">¿Público?</label>
+        </div>
         <input type="text" class="form-control" id="color" name="color" formControlName="color">
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="raza">Raza</label>
+        <div class="form-check form-check-inline">
+          <input type="checkbox" name="checkRaza" class="form-check-input" id="">
+          <label for="checkRaza">¿Público?</label>
+        </div>
         <input type="text" class="form-control" id="raza" name="raza" formControlName="raza">
       </div>
       <div class="col">
-        <label for="senas">Senas</label>
+        <label for="senas">Señas</label>
+        <div class="form-check form-check-inline">
+          <input type="checkbox" name="checkSenas" class="form-check-input" id="">
+          <label for="checkSenas">¿Público?</label>
+        </div>
         <input type="text" class="form-control" id="senas" name="senas" formControlName="senas">
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="nacimiento">Nacimiento</label>
+        <div class="form-check form-check-inline">
+          <input type="checkbox" name="checkNaci" class="form-check-input" id="">
+          <label for="checkNaci">¿Público?</label>
+        </div>
         <input type="date" class="form-control" id="nacimiento" name="nacimiento" formControlName="nacimiento">
       </div>
       <button type="submit" [disabled]="!formMascota.valid" style="margin-top: 30px;"
@@ -42,7 +78,7 @@
     </div>
   </form>
   <h2>Listado de mascotas</h2>
-  <table class="table">
+  <table class="table table-hover table-bordered">
     <thead>
       <tr>
         <th scope="col">Nombre</th>
@@ -67,10 +103,16 @@
         <td>
           <nav class="buttons">
             <button class="btn btn-primary"
-              style="width: 50px; height: 50px;background-image: url(../../assets/images/lapiz.png); background-size: cover;">
+              style="margin-right: 10px;width: 50px; height: 50px;background-image: url(../../assets/images/lapiz.png); background-size: cover;"
+              title="Editar Mascota">
             </button>
             <button class="btn btn-primary"
-              style="width: 50px; height: 50px;background-image: url(../../assets/images/basura.png); background-size: cover;"></button>
+              style="margin-right: 10px;width: 50px; height: 50px;background-image: url(../../assets/images/basura.png); background-size: cover;"
+              title="Borrar Mascota"></button>
+            <button class="btn btn-primary"
+              style="margin-right: 10px;width: 50px; height: 50px;background-image: url(../../assets/images/anotador.png); background-size: cover;"
+              title="Historial de Mascota">
+            </button>
           </nav>
         </td>
       </tr>

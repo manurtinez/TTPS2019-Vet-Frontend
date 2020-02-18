@@ -296,12 +296,13 @@
 </style>
 <!-- nav -->
 <ng-container *ngIf="currentUser">
-  <ng-container *ngIf="currentUser.rol === 'ttps.spring.model.Dueno'; else veterinario">
-    <nav class="navbar navbar-expand navbar-dark bg-primary" style="font-size: 24px;">
+  <ng-container *ngIf="currentUser.rol === 'Dueno'; else veterinario">
+    <nav id="header" class="navbar navbar-expand navbar-dark bg-primary ml-auto" style="font-size: 24px;">
+      <img src="/assets/images/vet.jpg" alt="">
       <div class="navbar-nav mr-auto">
         <a class="nav-item nav-link active" routerLink="/">Home</a>
         <a class="nav-item nav-link" routerLink="/editar-dueno">Editar Datos</a>
-        <a class="nav-item nav-link" routerLink="/perfil">Mascotas</a>
+        <a class="nav-item nav-link" routerLink="/perfil">Mis Mascotas</a>
         <a class="nav-item nav-link" (click)="logout()">Salir</a>
         <h3>Bienvenido, {{currentUser.usuario}}!</h3>
       </div>
@@ -311,6 +312,7 @@
     <nav class="navbar navbar-expand navbar-dark bg-primary" style="font-size: 24px;">
       <div class="navbar-nav mr-auto">
         <a class="nav-item nav-link active" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="/perfil">Mis Mascotas</a>
         <a class="nav-item nav-link" (click)="logout()">Salir</a>
         <h3>Bienvenido, {{currentUser.usuario}}!</h3>
       </div>
@@ -323,10 +325,6 @@
 <!-- main app container -->
 <div class="jumbotron">
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
     <router-outlet></router-outlet>
-  </div>
-  </div>
   </div>
 </div>
