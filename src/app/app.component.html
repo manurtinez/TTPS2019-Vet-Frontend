@@ -191,7 +191,7 @@
   }
 
   .terminal pre {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
     color: white;
     padding: 0 1rem 1rem;
     margin: 0;
@@ -235,17 +235,17 @@
     align-items: center;
     font-size: 12px;
     padding: 3px 10px;
-    border: 1px solid rgba(27,31,35,.2);
+    border: 1px solid rgba(27, 31, 35, .2);
     border-radius: 3px;
-    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
+    background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
     margin-left: 4px;
     font-weight: 600;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   }
 
   .github-star-badge:hover {
-    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
-    border-color: rgba(27,31,35,.35);
+    background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
+    border-color: rgba(27, 31, 35, .35);
     background-position: -.5em;
   }
 
@@ -267,7 +267,7 @@
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
 
-    .card-container > *:not(.circle-link) ,
+    .card-container>*:not(.circle-link),
     .terminal {
       width: 100%;
     }
@@ -297,22 +297,22 @@
 <!-- nav -->
 <ng-container *ngIf="currentUser">
   <ng-container *ngIf="currentUser.rol === 'ttps.spring.model.Dueno'; else veterinario">
-    <nav class="navbar navbar-expand navbar-dark bg-primary" style="font-size: 24px;" >
+    <nav class="navbar navbar-expand navbar-dark bg-primary" style="font-size: 24px;">
       <div class="navbar-nav mr-auto">
-          <a class="nav-item nav-link active" routerLink="/">Home</a>
-          <a class="nav-item nav-link" routerLink="/editar-dueno">Editar Datos</a>
-          <a class="nav-item nav-link" routerLink="/perfil">Mascotas</a>
-          <a class="nav-item nav-link" (click)="logout()">Salir</a>
-          <h3>Bienvenido, {{currentUser.usuario}}!</h3>
+        <a class="nav-item nav-link active" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="/editar-dueno">Editar Datos</a>
+        <a class="nav-item nav-link" routerLink="/perfil">Mascotas</a>
+        <a class="nav-item nav-link" (click)="logout()">Salir</a>
+        <h3>Bienvenido, {{currentUser.usuario}}!</h3>
       </div>
     </nav>
   </ng-container>
   <ng-template #veterinario>
     <nav class="navbar navbar-expand navbar-dark bg-primary" style="font-size: 24px;">
       <div class="navbar-nav mr-auto">
-          <a class="nav-item nav-link active" routerLink="/">Home</a>
-          <a class="nav-item nav-link" (click)="logout()">Salir</a>
-          <h3>Bienvenido, {{currentUser.usuario}}!</h3>
+        <a class="nav-item nav-link active" routerLink="/">Home</a>
+        <a class="nav-item nav-link" (click)="logout()">Salir</a>
+        <h3>Bienvenido, {{currentUser.usuario}}!</h3>
       </div>
     </nav>
   </ng-template>
@@ -323,10 +323,10 @@
 <!-- main app container -->
 <div class="jumbotron">
   <div class="container">
-      <div class="row">
-          <div class="col-md-6 offset-md-3">
-              <router-outlet></router-outlet>
-          </div>
-      </div>
+    <div class="row">
+      <div class="col">
+    <router-outlet></router-outlet>
+  </div>
+  </div>
   </div>
 </div>
