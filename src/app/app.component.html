@@ -295,7 +295,7 @@
   }
 </style>
 <!-- nav -->
-<ng-container *ngIf="currentUser">
+<ng-container *ngIf="currentUser; else nologeado">
   <ng-container *ngIf="currentUser.rol === 'Dueno'; else veterinario">
     <nav id="header" class="navbar navbar-expand navbar-dark bg-primary ml-auto" style="font-size: 24px;">
       <img src="/assets/images/vet.jpg" alt="">
@@ -309,7 +309,8 @@
     </nav>
   </ng-container>
   <ng-template #veterinario>
-    <nav class="navbar navbar-expand navbar-dark bg-primary" style="font-size: 24px;">
+    <nav id="header" class="navbar navbar-expand navbar-dark bg-primary" style="font-size: 24px;">
+      <img src="/assets/images/vet.jpg" alt="">
       <div class="navbar-nav mr-auto">
         <a class="nav-item nav-link active" routerLink="/">Home</a>
         <a class="nav-item nav-link" routerLink="/perfil">Mis Mascotas</a>
@@ -319,6 +320,14 @@
     </nav>
   </ng-template>
 </ng-container>
+<ng-template #nologeado>
+  <nav id="header" class="navbar navbar-expand navbar-dark bg-primary ml-auto" style="font-size: 24px;">
+    <img src="/assets/images/vet.jpg" alt="">
+    <div class="navbar-nav mr-auto">
+      <a class="nav-item nav-link active" routerLink="/login">Login</a>
+    </div>
+  </nav>
+</ng-template>
 
 
 
