@@ -13,6 +13,7 @@ import { MascotaService } from '../services/mascota-service';
 export class PerfilComponent implements OnInit {
 
   public mostrarAgregar: true;
+  public mostrarEditar: true;
   formMascota: FormGroup;
   private configFicha = new ConfigFicha();
   public mascotas: Mascota[];
@@ -81,6 +82,10 @@ export class PerfilComponent implements OnInit {
       const index = this.mascotas.indexOf(mascota);
       this.mascotas.splice(index, 1);
     }
+  }
+
+  editarMascota(id: number) {
+
   }
 
 }

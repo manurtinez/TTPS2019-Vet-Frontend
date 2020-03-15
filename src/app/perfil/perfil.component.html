@@ -1,4 +1,31 @@
 <h1>Sección Mascotas</h1>
+<!-- Modal -->
+<div *ngFor="let m of mascotas" class="modal fade" id="exampleModal{{m.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editando {{m.nombre}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{m.nombre}}
+        {{m.especie}}
+        {{m.raza}}
+        {{m.sexo}}
+        {{m.color}}
+        {{m.senas}}
+        {{m.nacimiento | date}}
+        <button type="button" class="btn btn-primary">Editar</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+      </div>
+    </div>
+  </div>
+</div>
 <div class="perfilContainer">
   <button class="btn btn-dark" (click)="this.mostrarAgregar = !this.mostrarAgregar">Agregar Mascota</button>
   <form *ngIf="this.mostrarAgregar" [formGroup]="formMascota" (ngSubmit)="agregarMascota()">
@@ -104,7 +131,8 @@
           <nav class="buttons">
             <button class="btn btn-primary"
               style="margin-right: 10px;width: 50px; height: 50px;background-image: url(../../assets/images/lapiz.png); background-size: cover;"
-              title="Editar Mascota">
+              title="Editar Mascota" data-toggle="modal"
+              [attr.data-target]="'#' + 'exampleModal' + mascota.id">
             </button>
             <button class="btn btn-primary"
               style="margin-right: 10px;width: 50px; height: 50px;background-image: url(../../assets/images/basura.png); background-size: cover;"
