@@ -18,7 +18,7 @@ export class PerfilComponent implements OnInit {
   public mascotas: Mascota[];
   error = '';
   constructor(private duenoservice: DuenoService, private formBuilder: FormBuilder, private mascotaService: MascotaService) {
-   }
+  }
 
   ngOnInit() {
     this.formMascota = this.formBuilder.group({
@@ -64,6 +64,23 @@ export class PerfilComponent implements OnInit {
       }
     );
     this.mascotas.push(mascota);
+  }
+
+  eliminarMascota(mascota: Mascota) {
+    if (confirm(`Esta seguro de que quiere eliminar a ${mascota.nombre}?`)) {
+      this.mascotaService.eliminarMascota(mascota.id).subscribe(
+        data => {
+          console.log(data);
+          window.alert('mascota eliminada exitosamente!');
+        },
+        error => {
+          alert('error al eliminar');
+          console.log(error);
+        }
+      );
+      const index = this.mascotas.indexOf(mascota);
+      this.mascotas.splice(index, 1);
+    }
   }
 
 }

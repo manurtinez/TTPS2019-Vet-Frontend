@@ -2,6 +2,7 @@ import { Config } from 'protractor';
 import { ConfigFicha } from './configFicha';
 
 export class Mascota {
+  public id: number;
   public color: string;
   public especie: string;
   public nacimiento: Date;

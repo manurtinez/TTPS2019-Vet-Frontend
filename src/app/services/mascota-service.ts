@@ -12,4 +12,9 @@ export class MascotaService {
     const id = JSON.parse(localStorage.getItem('currentUser')).id;
     return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/${id}/nuevaMascota`, mascota);
   }
+
+  public eliminarMascota(idMascota: number) {
+    const id = JSON.parse(localStorage.getItem('currentUser')).id;
+    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/${id}/borrarMascota`, idMascota);
+  }
 }
