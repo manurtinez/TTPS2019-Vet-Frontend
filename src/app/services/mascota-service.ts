@@ -17,4 +17,8 @@ export class MascotaService {
     const id = JSON.parse(localStorage.getItem('currentUser')).id;
     return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/${id}/borrarMascota`, idMascota);
   }
+
+  public ultimasMascotas() {
+    return this.http.get<Mascota[]>('http://localhost:8080/HistoriaClinicaMascotas/ultimasMascotas');
+  }
 }
