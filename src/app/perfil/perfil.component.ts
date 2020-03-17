@@ -15,6 +15,7 @@ export class PerfilComponent implements OnInit {
   public mostrarAgregar: true;
   public mostrarEditar: true;
   formMascota: FormGroup;
+  formEditar: FormGroup;
   private configFicha = new ConfigFicha();
   public mascotas: Mascota[];
   error = '';
@@ -31,9 +32,19 @@ export class PerfilComponent implements OnInit {
       senas: [null, Validators.required],
       raza: [null, Validators.required],
     });
+    this.formEditar = this.formBuilder.group({
+      nombre: [null, Validators.required],
+      color: [null, Validators.required],
+      especie: [null, Validators.required],
+      nacimiento: [null, Validators.required],
+      sexo: [null, Validators.required],
+      senas: [null, Validators.required],
+      raza: [null, Validators.required],
+    });
     this.duenoservice.getAllMascotas().subscribe(
       data => {
         this.mascotas = data;
+        console.log(this.mascotas);
       },
       error => {
         this.error = 'no se pudieron recuperar las mascotas';

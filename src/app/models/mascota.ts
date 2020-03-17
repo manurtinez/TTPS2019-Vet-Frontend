@@ -1,5 +1,5 @@
-import { Config } from 'protractor';
 import { ConfigFicha } from './configFicha';
+import { Evento } from './evento';
 
 export class Mascota {
   public id: number;
@@ -12,6 +12,7 @@ export class Mascota {
   public sexo: string;
   public configFicha: ConfigFicha;
   public fotos: Blob[];
+  public historial: Evento[];
 
   constructor(color: string, especie: string, nacimiento: Date, nombre: string, raza: string,
               senas: string, sexo: string, configFicha: ConfigFicha) {
