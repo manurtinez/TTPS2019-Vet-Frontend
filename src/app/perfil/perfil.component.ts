@@ -4,6 +4,7 @@ import { DuenoService } from '../services/dueno-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfigFicha } from '../models/configFicha';
 import { MascotaService } from '../services/mascota-service';
+import { Evento } from '../models/evento';
 
 @Component({
   selector: 'app-perfil',
@@ -13,7 +14,8 @@ import { MascotaService } from '../services/mascota-service';
 export class PerfilComponent implements OnInit {
 
   public mostrarAgregar: true;
-  public mostrarEditar: true;
+  public mostrarEvento: true;
+  historial: Evento[];
   formMascota: FormGroup;
   formEditar: FormGroup;
   private configFicha = new ConfigFicha();
@@ -48,6 +50,16 @@ export class PerfilComponent implements OnInit {
       },
       error => {
         this.error = 'no se pudieron recuperar las mascotas';
+        console.error(error);
+      }
+    );
+    this.duenoservice.getHistorial().subscribe(
+      data => {
+        this.historial = data;
+        console.log(this.historial);
+      },
+      error => {
+        this.error = 'no se pudo recuperar el historial';
         console.error(error);
       }
     );
@@ -95,8 +107,17 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-  editarMascota(id: number) {
+  agregarEvento() {
 
+  }
+
+  nombreMascota(mascotas, id) {
+    for (let i = 0; i < mascotas.length; i++) {
+      if (mascotas[i].id == id) {
+        return mascotas[i].nombre;
+      }
+    }
+    return '-';
   }
 
 }

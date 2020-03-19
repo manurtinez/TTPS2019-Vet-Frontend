@@ -1,4 +1,5 @@
 export class Evento {
+  tipo_evento: string;
   id: number;
   fecha: Date;
   droga: string;
@@ -7,16 +8,21 @@ export class Evento {
   indicaciones: string;
   motivo: string;
   peso: number;
-  nroNacidos: number;
+  nro_nacidos: number;
 
-  constructor(fecha: Date,
-              droga: string,
-              resultado: string,
-              descripcion: string,
-              indicaciones: string,
-              motivo: string,
-              peso: number,
-              nroNacidos: number) {
+  constructor(
+    tipo_evento: string,
+    id: number,
+    fecha: Date,
+    droga: string,
+    resultado: string,
+    descripcion: string,
+    indicaciones: string,
+    motivo: string,
+    peso: number,
+    nroNacidos: number) {
+    this.tipo_evento = tipo_evento;
+    this.id = id;
     this.fecha = fecha;
     this.droga = droga;
     this.resultado = resultado;
@@ -24,6 +30,6 @@ export class Evento {
     this.indicaciones = indicaciones;
     this.motivo = motivo;
     this.peso = peso;
-    this.nroNacidos = nroNacidos;
+    this.nro_nacidos = nroNacidos;
   }
 }
