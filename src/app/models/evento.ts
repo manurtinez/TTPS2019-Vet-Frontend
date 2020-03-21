@@ -1,6 +1,7 @@
 export class Evento {
   tipo_evento: string;
   id: number;
+  mascotaId: number;
   fecha: Date;
   droga: string;
   resultado: string;
@@ -13,6 +14,7 @@ export class Evento {
   constructor(
     tipo_evento: string,
     id: number,
+    mascotaId: number,
     fecha: Date,
     droga: string,
     resultado: string,
@@ -23,6 +25,7 @@ export class Evento {
     nroNacidos: number) {
     this.tipo_evento = tipo_evento;
     this.id = id;
+    this.mascotaId = mascotaId;
     this.fecha = fecha;
     this.droga = droga;
     this.resultado = resultado;

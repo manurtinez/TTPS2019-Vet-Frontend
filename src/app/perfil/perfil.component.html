@@ -26,8 +26,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let h of this.historial">
-              <td>{{this.nombreMascota(this.mascotas, h.id)}}</td>
+            <tr *ngFor="let h of historial">
+              <td>{{this.nombreMascota(this.mascotas, h.mascotaId)}}</td>
               <td>{{h.fecha}}</td>
               <td>{{h.tipo_evento}}</td>
               <td>{{h.descripcion ? h.descripcion : '-'}}</td>
@@ -50,7 +50,7 @@
 <!-- Modal -->
 <div *ngFor="let m of mascotas" class="modal fade" id="historial{{m.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content" style="width: 1000px;">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Historial de {{m.nombre}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -63,18 +63,28 @@
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
-              <th scope="col">Descripcion de evento</th>
-              <th scope="col">Tipo de Evento</th>
               <th scope="col">Fecha</th>
+              <th scope="col">Tipo de Evento</th>
+              <th scope="col">Descripcion de evento</th>
+              <th scope="col">Droga recetada</th>
+              <th scope="col">Resultado</th>
+              <th scope="col">Indicaciones</th>
+              <th scope="col">Motivo</th>
+              <th scope="col">Peso</th>
               <th scope="col">Numero nacidos</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let h of m.historial">
-              <td>{{h.descripcion}}</td>
-              <td>{{h.tipo}}</td>
               <td>{{h.fecha}}</td>
-              <td>{{h.nroNacidos}}</td>
+              <td>{{h.tipo_evento}}</td>
+              <td>{{h.descripcion ? h.descripcion : '-'}}</td>
+              <td>{{h.droga ? h.droga : '-'}}</td>
+              <td>{{h.resultado ? h.resultado : '-'}}</td>
+              <td>{{h.indicaciones ? h.indicaciones : '-'}}</td>
+              <td>{{h.motivo ? h.motivo : '-'}}</td>
+              <td>{{h.peso ? h.peso : '-'}}</td>
+              <td>{{h.nro_nacidos ? h.nro_nacidos : '-'}}</td>
             </tr>
           </tbody>
         </table>

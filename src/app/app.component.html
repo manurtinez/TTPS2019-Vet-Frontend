@@ -310,9 +310,8 @@
   </ng-container>
   <ng-template #veterinario>
     <nav id="header" class="navbar navbar-expand navbar-dark bg-primary" style="font-size: 24px;">
-      <img src="/assets/images/vet.jpg" alt="">
+      <a class="nav-item nav-link active" routerLink="/"><img src="/assets/images/vet.jpg" alt=""></a>
       <div class="navbar-nav mr-auto">
-        <a class="nav-item nav-link active" routerLink="/">Home</a>
         <a class="nav-item nav-link" routerLink="/perfil">Mis Mascotas</a>
         <a class="nav-item nav-link" (click)="logout()">Salir</a>
         <h3>Bienvenido, {{currentUser.usuario}}!</h3>
@@ -322,7 +321,7 @@
 </ng-container>
 <ng-template #nologeado>
   <nav id="header" class="navbar navbar-expand navbar-dark bg-primary ml-auto" style="font-size: 24px;">
-    <img src="/assets/images/vet.jpg" alt="">
+    <a class="nav-item nav-link active" routerLink="/"><img src="/assets/images/vet.jpg" alt=""></a>
     <div class="navbar-nav mr-auto">
       <a class="nav-item nav-link active" routerLink="/login">Login</a>
     </div>

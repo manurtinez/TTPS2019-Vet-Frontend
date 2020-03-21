@@ -46,7 +46,7 @@ export class PerfilComponent implements OnInit {
     this.duenoservice.getAllMascotas().subscribe(
       data => {
         this.mascotas = data;
-        console.log(this.mascotas);
+        console.log('mascotas:', this.mascotas);
       },
       error => {
         this.error = 'no se pudieron recuperar las mascotas';
