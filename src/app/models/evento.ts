@@ -10,6 +10,7 @@ export class Evento {
   motivo: string;
   peso: number;
   nro_nacidos: number;
+  nroNacidos: number;
 
   constructor(
     tipo_evento: string,
@@ -22,6 +23,7 @@ export class Evento {
     indicaciones: string,
     motivo: string,
     peso: number,
+    nro_nacidos: number,
     nroNacidos: number) {
     this.tipo_evento = tipo_evento;
     this.id = id;
@@ -33,6 +35,7 @@ export class Evento {
     this.indicaciones = indicaciones;
     this.motivo = motivo;
     this.peso = peso;
-    this.nro_nacidos = nroNacidos;
+    this.nro_nacidos = nro_nacidos;
+    this.nroNacidos = this.nroNacidos;
   }
 }
