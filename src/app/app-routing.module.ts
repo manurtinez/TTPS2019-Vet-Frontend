@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { EditarDuenoComponent } from './editar-dueno/editar-dueno.component';
+import { HabilitarVeterinariosComponent } from './habilitar-veterinarios/habilitar-veterinarios.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'perfil', component: PerfilComponent},
-  {path: 'editar-dueno', component: EditarDuenoComponent}
+  {path: 'editar-dueno', component: EditarDuenoComponent},
+  {path: 'habilitar-veterinarios', component: HabilitarVeterinariosComponent}
 ];
 
 @NgModule({

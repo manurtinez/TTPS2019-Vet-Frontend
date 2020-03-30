@@ -5,12 +5,12 @@ export class UsuarioService {
     {
       usuario: 'manu123',
       password: '1234',
-      rol: 'ttps.spring.model.Dueno'
+      rol: 'Dueno'
     },
     {
       usuario: 'manuu',
       password: '12345',
-      rol: 'ttps.spring.model.Veterinario'
+      rol: 'Veterinario'
     }
   ];
 

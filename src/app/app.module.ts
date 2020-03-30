@@ -12,6 +12,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { AltaDuenoComponent } from './alta-dueno/alta-dueno.component';
 import { AltaVeterinarioComponent } from './alta-veterinario/alta-veterinario.component';
 import { EditarDuenoComponent } from './editar-dueno/editar-dueno.component';
+import { HabilitarVeterinariosComponent } from './habilitar-veterinarios/habilitar-veterinarios.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EditarDuenoComponent } from './editar-dueno/editar-dueno.component';
     PerfilComponent,
     AltaDuenoComponent,
     AltaVeterinarioComponent,
-    EditarDuenoComponent
+    EditarDuenoComponent,
+    HabilitarVeterinariosComponent
   ],
   imports: [
     BrowserModule,
