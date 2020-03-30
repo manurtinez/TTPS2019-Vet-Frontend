@@ -320,22 +320,22 @@
       </nav>
     </ng-container>
   </ng-template>
+  <ng-template #admin>
+    <nav id="header" class="navbar navbar-expand navbar-dark bg-primary" style="font-size: 24px;">
+      <a class="nav-item nav-link active" routerLink="/"><img src="/assets/images/vet.jpg" alt=""></a>
+      <div class="navbar-nav mr-auto">
+        <a class="nav-item nav-link" routerLink="/habilitar-veterinarios">Veterinarios</a>
+        <a class="nav-item nav-link" (click)="logout()">Salir</a>
+        <h3>Bienvenido, Admin!</h3>
+      </div>
+    </nav>
+  </ng-template>
 </ng-container>
 <ng-template #nologeado>
   <nav id="header" class="navbar navbar-expand navbar-dark bg-primary ml-auto" style="font-size: 24px;">
     <a class="nav-item nav-link active" routerLink="/"><img src="/assets/images/vet.jpg" alt=""></a>
     <div class="navbar-nav mr-auto">
       <a class="nav-item nav-link active" routerLink="/login">Login</a>
-    </div>
-  </nav>
-</ng-template>
-<ng-template #admin>
-  <nav id="header" class="navbar navbar-expand navbar-dark bg-primary" style="font-size: 24px;">
-    <a class="nav-item nav-link active" routerLink="/"><img src="/assets/images/vet.jpg" alt=""></a>
-    <div class="navbar-nav mr-auto">
-      <a class="nav-item nav-link" routerLink="/habilitar-veterinarios">Veterinarios</a>
-      <a class="nav-item nav-link" (click)="logout()">Salir</a>
-      <h3>Bienvenido, Admin!</h3>
     </div>
   </nav>
 </ng-template>
