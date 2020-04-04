@@ -26,6 +26,5 @@ export class HabilitarVeterinariosComponent implements OnInit {
         this.veterinarios = data;
       }
     );
-    console.log('despues');
   }
 }

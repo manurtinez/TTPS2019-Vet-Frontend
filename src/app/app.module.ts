@@ -13,6 +13,7 @@ import { AltaDuenoComponent } from './alta-dueno/alta-dueno.component';
 import { AltaVeterinarioComponent } from './alta-veterinario/alta-veterinario.component';
 import { EditarDuenoComponent } from './editar-dueno/editar-dueno.component';
 import { HabilitarVeterinariosComponent } from './habilitar-veterinarios/habilitar-veterinarios.component';
+import { HistorialEventosComponent } from './historial-eventos/historial-eventos.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HabilitarVeterinariosComponent } from './habilitar-veterinarios/habilit
     AltaDuenoComponent,
     AltaVeterinarioComponent,
     EditarDuenoComponent,
-    HabilitarVeterinariosComponent
+    HabilitarVeterinariosComponent,
+    HistorialEventosComponent
   ],
   imports: [
     BrowserModule,
