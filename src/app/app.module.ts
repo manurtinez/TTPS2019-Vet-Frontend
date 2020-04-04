@@ -14,6 +14,7 @@ import { AltaVeterinarioComponent } from './alta-veterinario/alta-veterinario.co
 import { EditarDuenoComponent } from './editar-dueno/editar-dueno.component';
 import { HabilitarVeterinariosComponent } from './habilitar-veterinarios/habilitar-veterinarios.component';
 import { HistorialEventosComponent } from './historial-eventos/historial-eventos.component';
+import { ModificarMascotaComponent } from './modificar-mascota/modificar-mascota.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +26,15 @@ import { HistorialEventosComponent } from './historial-eventos/historial-eventos
     AltaVeterinarioComponent,
     EditarDuenoComponent,
     HabilitarVeterinariosComponent,
-    HistorialEventosComponent
+    HistorialEventosComponent,
+    ModificarMascotaComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [HttpClientModule,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],

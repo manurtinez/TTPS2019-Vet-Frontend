@@ -6,6 +6,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { EditarDuenoComponent } from './editar-dueno/editar-dueno.component';
 import { HabilitarVeterinariosComponent } from './habilitar-veterinarios/habilitar-veterinarios.component';
 import { HistorialEventosComponent } from './historial-eventos/historial-eventos.component';
+import { ModificarMascotaComponent } from './modificar-mascota/modificar-mascota.component';
+
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -14,7 +16,8 @@ const routes: Routes = [
   {path: 'perfil', component: PerfilComponent},
   {path: 'editar-dueno', component: EditarDuenoComponent},
   {path: 'habilitar-veterinarios', component: HabilitarVeterinariosComponent},
-  {path: 'historial-eventos', component: HistorialEventosComponent}
+  {path: 'historial-eventos', component: HistorialEventosComponent},
+  {path: 'editar-mascota/:id', component: ModificarMascotaComponent}
 ];
 
 @NgModule({

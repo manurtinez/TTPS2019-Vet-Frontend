@@ -21,4 +21,8 @@ export class MascotaService {
   public ultimasMascotas() {
     return this.http.get<Mascota[]>('http://localhost:8080/HistoriaClinicaMascotas/ultimasMascotas');
   }
+
+  public getMascota(id: number) {
+    return this.http.get<Mascota>(`http://localhost:8080/HistoriaClinicaMascotas/mascotaSola/${id}`);
+  }
 }

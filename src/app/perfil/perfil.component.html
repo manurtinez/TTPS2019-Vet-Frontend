@@ -1,6 +1,7 @@
 <h1>Sección Mascotas</h1>
 <!-- Modal -->
-<div *ngFor="let m of mascotas" class="modal fade" id="historial{{m.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *ngFor="let m of mascotas" class="modal fade" id="historial{{m.id}}" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width: 1000px;">
       <div class="modal-header">
@@ -151,19 +152,16 @@
         <td>{{mascota.nacimiento | date}}</td>
         <td>
           <nav class="buttons">
-            <button class="btn btn-primary"
+            <a class="btn btn-primary"
               style="margin-right: 10px;width: 50px; height: 50px;background-image: url(../../assets/images/lapiz.png); background-size: cover;"
-              title="Editar Mascota" data-toggle="modal"
-              [attr.data-target]="'#' + 'exampleModal' + mascota.id">
-            </button>
+              title="Editar Mascota" [routerLink]="['/editar-mascota', mascota.id]">
+            </a>
             <button class="btn btn-primary"
               style="margin-right: 10px;width: 50px; height: 50px;background-image: url(../../assets/images/basura.png); background-size: cover;"
               title="Borrar Mascota" (click)="eliminarMascota(mascota)"></button>
             <button class="btn btn-primary"
               style="margin-right: 10px;width: 50px; height: 50px;background-image: url(../../assets/images/anotador.png); background-size: cover;"
-              title="Historial de Mascota"
-              data-toggle="modal"
-              [attr.data-target]="'#' + 'historial' + mascota.id">
+              title="Historial de Mascota" data-toggle="modal" [attr.data-target]="'#' + 'historial' + mascota.id">
             </button>
           </nav>
         </td>
