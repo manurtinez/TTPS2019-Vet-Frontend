@@ -7,7 +7,7 @@ export class VeterinarioService {
   constructor(private http: HttpClient) {}
 
   public agregarVeterinario(vet: Veterinario) {
-    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/create/veterinario/`, vet);
+    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/create/veterinario/`, vet, {headers: {skip: 'true'}});
   }
   validar(vet: Veterinario): boolean {
     if ((vet.nombre === '') || (vet.apellido === '') || (vet.email === '') ||

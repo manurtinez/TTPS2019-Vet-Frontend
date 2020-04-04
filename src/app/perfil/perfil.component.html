@@ -104,7 +104,7 @@
       <div class="col">
         <label for="nombre">Nombre de mascota</label>
         <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkNombre" class="form-check-input" id="">
+          <input type="checkbox" name="checkNombre" formControlName="checkNombre" class="form-check-input" id="">
           <label for="checkNombre">¿Público?</label>
         </div>
         <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
@@ -112,16 +112,16 @@
       <div class="col">
         <label for="sexo">Sexo</label>
         <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkSexo" class="form-check-input" id="">
+          <input type="checkbox" name="checkSexo" formControlName="checkSexo" class="form-check-input" id="">
           <label for="checkSexo">¿Público?</label>
         </div>
         <br>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" formControlName="sexo" id="sexoM" value="masculino">
+          <input class="form-check-input" type="radio" name="sexo" formControlName="sexo" id="sexoM" value="masculino">
           <label class="form-check-label" for="sexoM">Masculino</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" formControlName="sexo" id="sexoF" value="femenino">
+          <input class="form-check-input" type="radio" name="sexo" formControlName="sexo" id="sexoF" value="femenino">
           <label class="form-check-label" for="sexoF">Femenino</label>
         </div>
       </div>
@@ -130,7 +130,7 @@
       <div class="col">
         <label for="especie">Especie</label>
         <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkEspecie" class="form-check-input" id="">
+          <input type="checkbox" name="checkEspecie" formControlName="checkEspecie" class="form-check-input" id="">
           <label for="checkEspecie">¿Público?</label>
         </div>
         <input type="text" class="form-control" id="especie" name="especie" formControlName="especie">
@@ -138,7 +138,7 @@
       <div class="col">
         <label for="color">Color</label>
         <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkColor" class="form-check-input" id="">
+          <input type="checkbox" name="checkColor" formControlName="checkColor" class="form-check-input" id="">
           <label for="checkColor">¿Público?</label>
         </div>
         <input type="text" class="form-control" id="color" name="color" formControlName="color">
@@ -148,7 +148,7 @@
       <div class="col">
         <label for="raza">Raza</label>
         <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkRaza" class="form-check-input" id="">
+          <input type="checkbox" name="checkRaza" formControlName="checkRaza" class="form-check-input" id="">
           <label for="checkRaza">¿Público?</label>
         </div>
         <input type="text" class="form-control" id="raza" name="raza" formControlName="raza">
@@ -156,7 +156,7 @@
       <div class="col">
         <label for="senas">Señas</label>
         <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkSenas" class="form-check-input" id="">
+          <input type="checkbox" name="checkSenas" formControlName="checkSenas" class="form-check-input" id="">
           <label for="checkSenas">¿Público?</label>
         </div>
         <input type="text" class="form-control" id="senas" name="senas" formControlName="senas">
@@ -166,7 +166,7 @@
       <div class="col">
         <label for="nacimiento">Nacimiento</label>
         <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkNaci" class="form-check-input" id="">
+          <input type="checkbox" name="checkNaci" formControlName="checkNaci" class="form-check-input" id="">
           <label for="checkNaci">¿Público?</label>
         </div>
         <input type="date" class="form-control" id="nacimiento" name="nacimiento" formControlName="nacimiento">

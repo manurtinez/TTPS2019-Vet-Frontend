@@ -24,7 +24,7 @@ export class DuenoService {
   }
 
   agregarDueno(dueno: Dueno) {
-    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/create/dueno/`, dueno);
+    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/create/dueno/`, dueno, {headers: {skip: 'true'}});
   }
   editarDueno(dueno: Dueno) {
     const id = JSON.parse(localStorage.getItem('currentUser')).id;

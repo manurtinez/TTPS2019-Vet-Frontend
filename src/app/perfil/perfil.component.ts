@@ -18,7 +18,6 @@ export class PerfilComponent implements OnInit {
   historial: Evento[];
   formMascota: FormGroup;
   formEditar: FormGroup;
-  private configFicha = new ConfigFicha();
   public mascotas: Mascota[];
   error = '';
   constructor(private duenoservice: DuenoService, private formBuilder: FormBuilder, private mascotaService: MascotaService) {
@@ -33,6 +32,13 @@ export class PerfilComponent implements OnInit {
       sexo: [null, Validators.required],
       senas: [null, Validators.required],
       raza: [null, Validators.required],
+      checkNombre: [null],
+      checkColor: [null],
+      checkEspecie: [null],
+      checkNaci: [null],
+      checkSexo: [null],
+      checkRaza: [null],
+      checkSenas: [null],
     });
     this.formEditar = this.formBuilder.group({
       nombre: [null, Validators.required],
@@ -66,7 +72,18 @@ export class PerfilComponent implements OnInit {
   }
 
   agregarMascota() {
-    console.log('hola');
+    const config = new ConfigFicha(
+      this.formMascota.controls.checkNombre.value,
+      this.formMascota.controls.checkEspecie.value,
+      this.formMascota.controls.checkRaza.value,
+      this.formMascota.controls.checkSexo.value,
+      this.formMascota.controls.checkColor.value,
+      this.formMascota.controls.checkSenas.value,
+      this.formMascota.controls.checkNaci.value,
+      false,
+      false
+    );
+    console.log(config)
     const mascota = new Mascota(
       this.formMascota.controls.color.value,
       this.formMascota.controls.especie.value,
@@ -75,7 +92,7 @@ export class PerfilComponent implements OnInit {
       this.formMascota.controls.raza.value,
       this.formMascota.controls.senas.value,
       this.formMascota.controls.sexo.value,
-      this.configFicha
+      config
     );
     this.mascotaService.agregarMascota(mascota).subscribe(
       data => {
