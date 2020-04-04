@@ -13,6 +13,7 @@ import { AltaDuenoComponent } from './alta-dueno/alta-dueno.component';
 import { AltaVeterinarioComponent } from './alta-veterinario/alta-veterinario.component';
 import { EditarDuenoComponent } from './editar-dueno/editar-dueno.component';
 import { HabilitarVeterinariosComponent } from './habilitar-veterinarios/habilitar-veterinarios.component';
+import { ModificarMascotaComponent } from './modificar-mascota/modificar-mascota.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +24,15 @@ import { HabilitarVeterinariosComponent } from './habilitar-veterinarios/habilit
     AltaDuenoComponent,
     AltaVeterinarioComponent,
     EditarDuenoComponent,
-    HabilitarVeterinariosComponent
+    HabilitarVeterinariosComponent,
+    ModificarMascotaComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [HttpClientModule,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
