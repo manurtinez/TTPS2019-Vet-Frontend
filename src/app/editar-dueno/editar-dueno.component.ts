@@ -42,7 +42,14 @@ export class EditarDuenoComponent implements OnInit {
     this.duenoservice.editarDueno(d).subscribe(
       data => {
         alert('dueno editado con exito');
-        console.log(data);
+        const json = JSON.parse(localStorage.getItem('currentUser'));
+        json.usuario = this.form.controls.nombre.value;
+        json.nombre = this.form.controls.nombre.value;
+        json.apellido = this.form.controls.apellido.value;
+        json.telefono = this.form.controls.telefono.value;
+        json.email = this.form.controls.email.value;
+        localStorage.setItem('currentUser', JSON.stringify(json));
+        location.reload();
       },
       error => {
         alert('error al editar');
