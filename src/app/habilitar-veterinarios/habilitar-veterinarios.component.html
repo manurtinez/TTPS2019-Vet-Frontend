@@ -1,1 +1,15 @@
-<p>habilitar-veterinarios works!</p>
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Nombre de veterinario</th>
+      <th scope="col">Numero de matrícula</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let v of veterinarios">
+      <td>{{v.nombre}} {{v.apellido}}</td>
+      <td>{{v.nroMatricula}}</td>
+      <td><button class="btn btn-info btn-sm" (click)="habilitarVeterinario(v.id)">aceptar</button></td>
+    </tr>
+  </tbody>
+</table>

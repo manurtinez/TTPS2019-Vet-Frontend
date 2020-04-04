@@ -1,4 +1,5 @@
 export class Veterinario {
+  id: number;
   nombre: string;
   apellido: string;
   email: string;
@@ -8,8 +9,9 @@ export class Veterinario {
   dirClinica: string;
   nroMatricula: number;
 
-  constructor(nombre: string, apellido: string, email: string, password: string,
+  constructor(id: number, nombre: string, apellido: string, email: string, password: string,
               telefono: number, nomClinica: string, dirClinica: string, nroMatricula: number) {
+    this.id = id;
     this.apellido = apellido;
     this.email = email;
     this.nombre = nombre;

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../services/admin-service';
+import { Veterinario } from '../models/veterinario';
 
 @Component({
   selector: 'app-habilitar-veterinarios',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./habilitar-veterinarios.component.css']
 })
 export class HabilitarVeterinariosComponent implements OnInit {
-
-  constructor() { }
+  veterinarios: Veterinario[];
+  constructor(private adminservice: AdminService) { }
 
   ngOnInit() {
+    this.adminservice.veterinariosInhabilitados().subscribe(
+      data => {
+        this.veterinarios = data;
+        console.log('veterinarios:', this.veterinarios);
+      }
+    );
   }
-
+  habilitarVeterinario(id: number) {
+    this.adminservice.habilitarVeterinario(id).subscribe(
+      data => {
+        alert('veterinario habilitado con exito');
+        this.veterinarios = data;
+      }
+    );
+    console.log('despues');
+  }
 }
