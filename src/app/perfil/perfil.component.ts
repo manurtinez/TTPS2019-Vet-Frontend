@@ -5,14 +5,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfigFicha } from '../models/configFicha';
 import { MascotaService } from '../services/mascota-service';
 import { Evento } from '../models/evento';
+import { VeterinarioService } from '../services/veterinario-service';
+import { Veterinario } from '../models/veterinario';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
-
   public mostrarAgregar: true;
   public mostrarEvento: true;
   historial: Evento[];
@@ -20,8 +21,13 @@ export class PerfilComponent implements OnInit {
   formEditar: FormGroup;
   public mascotas: Mascota[];
   error = '';
-  constructor(private duenoservice: DuenoService, private formBuilder: FormBuilder, private mascotaService: MascotaService) {
-  }
+  public veterinarios: Veterinario[];
+  constructor(
+    private duenoservice: DuenoService,
+    private veterinarioservice: VeterinarioService,
+    private formBuilder: FormBuilder,
+    private mascotaService: MascotaService
+  ) {}
 
   ngOnInit() {
     this.formMascota = this.formBuilder.group({
@@ -32,6 +38,7 @@ export class PerfilComponent implements OnInit {
       sexo: [null, Validators.required],
       senas: [null, Validators.required],
       raza: [null, Validators.required],
+      vetID: [null],
       checkNombre: [null],
       checkColor: [null],
       checkEspecie: [null],
@@ -39,6 +46,7 @@ export class PerfilComponent implements OnInit {
       checkSexo: [null],
       checkRaza: [null],
       checkSenas: [null],
+      checkVet: [null],
     });
     this.formEditar = this.formBuilder.group({
       nombre: [null, Validators.required],
@@ -50,19 +58,27 @@ export class PerfilComponent implements OnInit {
       raza: [null, Validators.required],
     });
     this.duenoservice.getAllMascotas().subscribe(
-      data => {
+      (data) => {
         this.mascotas = data;
       },
-      error => {
+      (error) => {
         this.error = 'no se pudieron recuperar las mascotas';
         console.error(error);
       }
     );
+    this.veterinarioservice.getAllVets().subscribe(
+      (data) => {
+        this.veterinarios = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
     this.duenoservice.getHistorial().subscribe(
-      data => {
+      (data) => {
         this.historial = data;
       },
-      error => {
+      (error) => {
         this.error = 'no se pudo recuperar el historial';
         console.error(error);
       }
@@ -79,7 +95,7 @@ export class PerfilComponent implements OnInit {
       this.formMascota.controls.checkSenas.value,
       this.formMascota.controls.checkNaci.value,
       false,
-      false
+      this.formMascota.controls.checkVet.value,
     );
     const mascota = new Mascota(
       this.formMascota.controls.color.value,
@@ -91,11 +107,11 @@ export class PerfilComponent implements OnInit {
       this.formMascota.controls.sexo.value,
       config
     );
-    this.mascotaService.agregarMascota(mascota).subscribe(
-      data => {
+    this.mascotaService.agregarMascota(mascota, this.formMascota.controls.vetID.value).subscribe(
+      (data) => {
         window.alert('mascota agregada con exito!');
       },
-      error => {
+      (error) => {
         alert('error al crear mascota');
         console.log(error);
       }
@@ -106,10 +122,10 @@ export class PerfilComponent implements OnInit {
   eliminarMascota(mascota: Mascota) {
     if (confirm(`Esta seguro de que quiere eliminar a ${mascota.nombre}?`)) {
       this.mascotaService.eliminarMascota(mascota.id).subscribe(
-        data => {
+        (data) => {
           window.alert('mascota eliminada exitosamente!');
         },
-        error => {
+        (error) => {
           alert('error al eliminar');
           console.log(error);
         }
@@ -119,9 +135,7 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-  agregarEvento() {
-
-  }
+  agregarEvento() {}
 
   nombreMascota(mascotas, id) {
     for (let i = 0; i < mascotas.length; i++) {
@@ -131,5 +145,4 @@ export class PerfilComponent implements OnInit {
     }
     return '-';
   }
-
 }

@@ -16,4 +16,8 @@ export class VeterinarioService {
     }
     return true;
   }
+
+  getAllVets() {
+    return this.http.get<Veterinario[]>(`http://localhost:8080/HistoriaClinicaMascotas/todos-los-veterinarios`);
+  }
 }
