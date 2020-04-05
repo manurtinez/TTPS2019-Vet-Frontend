@@ -13,12 +13,11 @@ export class HistorialUnaMascotaComponent implements OnInit {
   route: ActivatedRoute;
   id: number;
   mascota: Mascota;
-  router: Router;
   historial: Evento[];
   posteriores: Evento[];
   mascotaService: MascotaService;
+  visibleEventos = false;
   constructor(router: Router, route: ActivatedRoute, mascotaService: MascotaService) {
-    this.router = router;
     this.route = route;
     this.mascotaService = mascotaService;
    }
@@ -57,6 +56,8 @@ export class HistorialUnaMascotaComponent implements OnInit {
         }
       );
   }
-
+  toggleEvento() {
+    this.visibleEventos = !this.visibleEventos;
+  }
 
 }

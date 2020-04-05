@@ -1,6 +1,14 @@
 <h2>Eventos Futuros de {{mascota.nombre}}</h2>
 <div>
-  <button type="button" class="btn btn-primary" style="margin-bottom: 15px;">Agregar Evento</button>
+  <button type="button" class="btn btn-primary" (click)="toggleEvento()">Agregar Evento</button>
+</div>
+<div class="mt-2" *ngIf=this.visibleEventos>
+  <button class="btn btn-info mr-2">Desparasitación</button>
+  <button class="btn btn-info mr-2">Vacunación</button>
+  <button class="btn btn-info mr-2">Enfermedad</button>
+  <button class="btn btn-info mr-2">Historial Reproductivo</button>
+  <button class="btn btn-info mr-2">Visita</button>
+  <button class="btn btn-info mr-2">Intervención</button>
 </div>
 <ng-container *ngIf="posteriores === null; else post">
 <h4>No posee eventos futuros</h4>
@@ -37,6 +45,11 @@
     </table>
   </div>
 </ng-template>
+<ng-container *ngIf="historial === null; else ant">
+  <h4>No posee eventos anteriores</h4>
+  </ng-container>
+
+<ng-template #ant>
 <div class="mt-4">
   <h2>Historial de Eventos de {{mascota.nombre}}</h2>
    <table class="table table-hover table-bordered">
@@ -67,4 +80,6 @@
        </tr>
      </tbody>
    </table>
-</div>
+  </div>
+  </ng-template>
+
