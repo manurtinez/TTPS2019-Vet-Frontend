@@ -149,6 +149,7 @@
         <th scope="col">Color</th>
         <th scope="col">Senas</th>
         <th scope="col">Nacimiento</th>
+        <th scope="col">Veterinario Asignado</th>
         <th scope="col">Opciones</th>
       </tr>
     </thead>
@@ -161,6 +162,7 @@
         <td>{{mascota.color}}</td>
         <td>{{mascota.senas}}</td>
         <td>{{mascota.nacimiento | date}}</td>
+        <td>{{mascota.veterinario.nombre}}</td>
         <td>
           <nav class="buttons">
             <a class="btn btn-primary"

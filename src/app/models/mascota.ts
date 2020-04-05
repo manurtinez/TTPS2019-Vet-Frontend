@@ -1,8 +1,10 @@
 import { ConfigFicha } from './configFicha';
 import { Evento } from './evento';
+import { Veterinario } from './veterinario';
 
 export class Mascota {
   public id: number;
+  public veterinario: Veterinario;
   public color: string;
   public especie: string;
   public nacimiento: Date;
