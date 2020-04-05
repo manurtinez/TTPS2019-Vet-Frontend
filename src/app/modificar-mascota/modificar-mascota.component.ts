@@ -1,22 +1,24 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Mascota } from '../models/mascota';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MascotaService } from '../services/mascota-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ConfigFicha } from '../models/configFicha';
 
 @Component({
   selector: 'app-modificar-mascota',
   templateUrl: './modificar-mascota.component.html',
   styleUrls: ['./modificar-mascota.component.css']
 })
-export class ModificarMascotaComponent implements OnInit, AfterContentInit {
+export class ModificarMascotaComponent implements OnInit {
   public mascota: Mascota;
   formMascota: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private mascotaService: MascotaService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class ModificarMascotaComponent implements OnInit, AfterContentInit {
       .subscribe(
         data => {
           this.mascota = data;
-          let fecha = new Date(this.mascota.nacimiento);
+          const fecha = new Date(this.mascota.nacimiento);
           this.formMascota = this.formBuilder.group({
             nombre: [this.mascota.nombre, Validators.required],
             color: [this.mascota.color, Validators.required],
@@ -35,39 +37,49 @@ export class ModificarMascotaComponent implements OnInit, AfterContentInit {
             sexo: [this.mascota.sexo, Validators.required],
             senas: [this.mascota.senas, Validators.required],
             raza: [this.mascota.raza, Validators.required],
-            checkNombre: [null],
-            checkColor: [null],
-            checkEspecie: [null],
-            checkNaci: [null],
-            checkSexo: [null],
-            checkRaza: [null],
-            checkSenas: [null],
+            checkNombre: [this.mascota.configFicha.nombre],
+            checkColor: [this.mascota.configFicha.color],
+            checkEspecie: [this.mascota.configFicha.especie],
+            checkNaci: [this.mascota.configFicha.nacimiento],
+            checkSexo: [this.mascota.configFicha.sexo],
+            checkRaza: [this.mascota.configFicha.raza],
+            checkSenas: [this.mascota.configFicha.senas],
           });
         },
         error => {
           console.log(error);
         }
       );
-    console.log(this.mascota);
-    // this.formMascota = this.formBuilder.group({
-    //   nombre: ['hola', Validators.required],
-    //   color: [null, Validators.required],
-    //   especie: [null, Validators.required],
-    //   nacimiento: [null, Validators.required],
-    //   sexo: [null, Validators.required],
-    //   senas: [null, Validators.required],
-    //   raza: [null, Validators.required],
-    //   checkNombre: [null],
-    //   checkColor: [null],
-    //   checkEspecie: [null],
-    //   checkNaci: [null],
-    //   checkSexo: [null],
-    //   checkRaza: [null],
-    //   checkSenas: [null],
-    // });
   }
 
-  ngAfterContentInit() {
-
+  editarMascota() {
+    const config = new ConfigFicha(
+      this.formMascota.controls.checkNombre.value,
+      this.formMascota.controls.checkEspecie.value,
+      this.formMascota.controls.checkRaza.value,
+      this.formMascota.controls.checkSexo.value,
+      this.formMascota.controls.checkColor.value,
+      this.formMascota.controls.checkSenas.value,
+      this.formMascota.controls.checkNaci.value,
+      false,
+      false
+    );
+    this.mascota.color = this.formMascota.controls.color.value,
+    this.mascota.especie = this.formMascota.controls.especie.value,
+    this.mascota.nacimiento = this.formMascota.controls.nacimiento.value,
+    this.mascota.nombre = this.formMascota.controls.nombre.value,
+    this.mascota.raza = this.formMascota.controls.raza.value,
+    this.mascota.senas = this.formMascota.controls.senas.value,
+    this.mascota.sexo = this.formMascota.controls.sexo.value;
+    this.mascota.configFicha = config;
+    this.mascotaService.editarMascota(this.mascota).subscribe(
+      x => {
+        alert('mascota editada con exito!');
+        this.router.navigate(['/perfil']);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }

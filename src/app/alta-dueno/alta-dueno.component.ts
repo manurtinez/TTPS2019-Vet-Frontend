@@ -14,12 +14,10 @@ export class AltaDuenoComponent  implements OnInit {
 
   ngOnInit() {  }
   altaDueno() {
-    console.log(this.dueno);
     if (this.duenoService.validar(this.dueno)) {
       this.duenoService.agregarDueno(this.dueno).subscribe(
         data => {
           alert('dueno creado con exito');
-          console.log(data);
         },
         error => {
           alert('error');

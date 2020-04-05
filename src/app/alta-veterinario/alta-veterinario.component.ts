@@ -14,7 +14,6 @@ export class AltaVeterinarioComponent implements OnInit {
   ngOnInit() { }
 
   altaVeterinario() {
-    console.log(this.vet);
     if (this.veterinarioService.validar(this.vet)) {
       if (this.vet.dirClinica === '') {
         this.vet.dirClinica = null;
@@ -25,7 +24,6 @@ export class AltaVeterinarioComponent implements OnInit {
       this.veterinarioService.agregarVeterinario(this.vet).subscribe(
         data => {
           alert('veterinario creado con exito');
-          console.log(data);
         },
         error => {
           alert('error al crear veterinario');

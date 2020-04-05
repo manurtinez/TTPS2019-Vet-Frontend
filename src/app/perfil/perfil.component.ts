@@ -52,7 +52,6 @@ export class PerfilComponent implements OnInit {
     this.duenoservice.getAllMascotas().subscribe(
       data => {
         this.mascotas = data;
-        console.log('mascotas:', this.mascotas);
       },
       error => {
         this.error = 'no se pudieron recuperar las mascotas';
@@ -62,7 +61,6 @@ export class PerfilComponent implements OnInit {
     this.duenoservice.getHistorial().subscribe(
       data => {
         this.historial = data;
-        console.log(this.historial);
       },
       error => {
         this.error = 'no se pudo recuperar el historial';
@@ -83,7 +81,6 @@ export class PerfilComponent implements OnInit {
       false,
       false
     );
-    console.log(config)
     const mascota = new Mascota(
       this.formMascota.controls.color.value,
       this.formMascota.controls.especie.value,
@@ -96,7 +93,6 @@ export class PerfilComponent implements OnInit {
     );
     this.mascotaService.agregarMascota(mascota).subscribe(
       data => {
-        console.log(data);
         window.alert('mascota agregada con exito!');
       },
       error => {
@@ -111,7 +107,6 @@ export class PerfilComponent implements OnInit {
     if (confirm(`Esta seguro de que quiere eliminar a ${mascota.nombre}?`)) {
       this.mascotaService.eliminarMascota(mascota.id).subscribe(
         data => {
-          console.log(data);
           window.alert('mascota eliminada exitosamente!');
         },
         error => {

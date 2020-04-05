@@ -41,11 +41,10 @@ export class LoginComponent implements OnInit {
       .login(this.username, this.pass)
       .pipe(
         first(),
-        tap(valor => console.log('mi valor', valor))
+        tap()
       )
       .subscribe(
         data => {
-          console.log(localStorage.getItem('currentUser'));
           this.router.navigateByUrl('/home');
       },
       error => {

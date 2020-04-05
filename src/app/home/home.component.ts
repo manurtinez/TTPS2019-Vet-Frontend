@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
     this.mascotaservice.ultimasMascotas().subscribe(
       data => {
         this.ultimasMascotas = data;
-        console.log(this.ultimasMascotas);
       },
       error => {
         console.error(error);

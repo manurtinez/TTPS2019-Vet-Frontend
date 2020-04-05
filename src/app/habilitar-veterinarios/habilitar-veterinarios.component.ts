@@ -15,7 +15,6 @@ export class HabilitarVeterinariosComponent implements OnInit {
     this.adminservice.veterinariosInhabilitados().subscribe(
       data => {
         this.veterinarios = data;
-        console.log('veterinarios:', this.veterinarios);
       }
     );
   }

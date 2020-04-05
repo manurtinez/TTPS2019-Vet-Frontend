@@ -1,5 +1,5 @@
 <h1>Modificando datos de {{mascota?.nombre}}</h1>
-<form *ngIf="mascota" [formGroup]="formMascota">
+<form *ngIf="mascota" [formGroup]="formMascota" (ngSubmit)="editarMascota()">
   <div class="row">
     <div class="col">
       <label for="nombre">Nombre de mascota</label>

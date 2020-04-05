@@ -21,8 +21,6 @@ export class AuthenticationService {
 
   login(username: string, password: string) {
     const user = new User(username, password);
-    console.log(user);
-    console.log(JSON.stringify(user));
     return this.http.post<any>('http://localhost:8080/HistoriaClinicaMascotas/autenticacion', user)
       .pipe(map(credentials => {
         if (credentials && credentials.token) {
