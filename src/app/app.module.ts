@@ -15,6 +15,7 @@ import { EditarDuenoComponent } from './editar-dueno/editar-dueno.component';
 import { HabilitarVeterinariosComponent } from './habilitar-veterinarios/habilitar-veterinarios.component';
 import { HistorialEventosComponent } from './historial-eventos/historial-eventos.component';
 import { ModificarMascotaComponent } from './modificar-mascota/modificar-mascota.component';
+import { HistorialUnaMascotaComponent } from './historial-una-mascota/historial-una-mascota.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ModificarMascotaComponent } from './modificar-mascota/modificar-mascota
     EditarDuenoComponent,
     HabilitarVeterinariosComponent,
     HistorialEventosComponent,
-    ModificarMascotaComponent
+    ModificarMascotaComponent,
+    HistorialUnaMascotaComponent
   ],
   imports: [
     AppRoutingModule,
