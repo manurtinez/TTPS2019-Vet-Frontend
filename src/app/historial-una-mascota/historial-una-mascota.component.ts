@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Mascota } from '../models/mascota';
 import { Evento } from '../models/evento';
 import { MascotaService } from '../services/mascota-service';
+import { EventoService } from '../services/evento-service';
 
 @Component({
   selector: 'app-historial-una-mascota',
@@ -17,16 +18,23 @@ export class HistorialUnaMascotaComponent implements OnInit {
   posteriores: Evento[];
   evento: Evento = new Evento('', 0, 0, null, '', '', '', '', '', 0, 0, 0);
   mascotaService: MascotaService;
+  eventoService: EventoService;
   visibleEventos = false;
   visibleForm = false;
-  constructor(router: Router, route: ActivatedRoute, mascotaService: MascotaService) {
+  constructor(router: Router, route: ActivatedRoute, mascotaService: MascotaService, eventoService: EventoService) {
     this.route = route;
     this.mascotaService = mascotaService;
+    this.eventoService = eventoService;
    }
 
   ngOnInit() {
     // tslint:disable-next-line: radix
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.getHistorialUnaMascota();
+    this.getEventosPosterioresDeUnaMascota();
+    this.getMascota();
+  }
+  getHistorialUnaMascota() {
     this.mascotaService
     .getHistorialUnaMascota(this.id)
     .subscribe(
@@ -37,6 +45,20 @@ export class HistorialUnaMascotaComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  getMascota() {
+    this.mascotaService
+    .getMascota(this.id)
+    .subscribe(
+      data => {
+        this.mascota = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  getEventosPosterioresDeUnaMascota() {
     this.mascotaService
     .getEventosPosterioresDeUnaMascota(this.id)
     .subscribe(
@@ -47,16 +69,6 @@ export class HistorialUnaMascotaComponent implements OnInit {
         console.log(error);
       }
     );
-    this.mascotaService
-      .getMascota(this.id)
-      .subscribe(
-        data => {
-          this.mascota = data;
-        },
-        error => {
-          console.log(error);
-        }
-      );
   }
   isVisita() {
     return  (this.evento.tipo_evento === 'Visita');
@@ -103,7 +115,14 @@ export class HistorialUnaMascotaComponent implements OnInit {
   alta() {
     this.evento.mascotaId = this.id;
     console.log(this.evento.fecha);
+    this.eventoService.altaEvento(this.evento).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
     alert('Evento creado correctamente');
+    this.getHistorialUnaMascota();
+    this.getEventosPosterioresDeUnaMascota();
     this.visibleForm = false;
   }
 }
