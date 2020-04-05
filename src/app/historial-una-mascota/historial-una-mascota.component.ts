@@ -15,8 +15,10 @@ export class HistorialUnaMascotaComponent implements OnInit {
   mascota: Mascota;
   historial: Evento[];
   posteriores: Evento[];
+  evento: Evento = new Evento('', 0, 0, null, '', '', '', '', '', 0, 0, 0);
   mascotaService: MascotaService;
   visibleEventos = false;
+  visibleForm = false;
   constructor(router: Router, route: ActivatedRoute, mascotaService: MascotaService) {
     this.route = route;
     this.mascotaService = mascotaService;
@@ -59,5 +61,32 @@ export class HistorialUnaMascotaComponent implements OnInit {
   toggleEvento() {
     this.visibleEventos = !this.visibleEventos;
   }
-
+  toggleDesparasitacion() {
+      this.visibleForm = !this.visibleForm;
+      this.evento.tipo_evento = 'Desparasitacion';
+  }
+  toggleVacunacion() {
+    this.visibleForm = !this.visibleForm;
+    this.evento.tipo_evento = 'Vacunacion';
+  }
+  toggleEnfermedad() {
+    this.visibleForm = !this.visibleForm;
+    this.evento.tipo_evento = 'Enfermedad';
+  }
+  toggleVisita() {
+    this.visibleForm = !this.visibleForm;
+    this.evento.tipo_evento = 'Visita';
+  }
+  toggleIntervencion() {
+    this.visibleForm = !this.visibleForm;
+    this.evento.tipo_evento = 'Intervención';
+  }
+  toggleHistorialReproductivo() {
+    this.visibleForm = !this.visibleForm;
+    this.evento.tipo_evento = 'HistorialReproductivo';
+  }
+  alta() {
+    alert('Evento creado correctamente');
+    this.visibleForm = false;
+  }
 }

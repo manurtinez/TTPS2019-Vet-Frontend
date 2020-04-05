@@ -1,15 +1,37 @@
-<h2>Eventos Futuros de {{mascota.nombre}}</h2>
+
 <div>
   <button type="button" class="btn btn-primary" (click)="toggleEvento()">Agregar Evento</button>
 </div>
-<div class="mt-2" *ngIf=this.visibleEventos>
-  <button class="btn btn-info mr-2">Desparasitación</button>
-  <button class="btn btn-info mr-2">Vacunación</button>
-  <button class="btn btn-info mr-2">Enfermedad</button>
-  <button class="btn btn-info mr-2">Historial Reproductivo</button>
-  <button class="btn btn-info mr-2">Visita</button>
-  <button class="btn btn-info mr-2">Intervención</button>
+<div class="mt-2 mb-4" *ngIf=this.visibleEventos>
+  <button (click)=toggleDesparasitacion() class="btn btn-info mr-2">Desparasitación</button>
+  <button (click)=toggleVacunacion() class="btn btn-info mr-2">Vacunación</button>
+  <button (click)=toggleEnfermedad() class="btn btn-info mr-2">Enfermedad</button>
+  <button (click)=toggleHistorialReproductivo() class="btn btn-info mr-2">Historial Reproductivo</button>
+  <button (click)=toggleVisita() class="btn btn-info mr-2">Visita</button>
+  <button (click)=toggleIntervencion() class="btn btn-info mr-2">Intervención</button>
 </div>
+<div>
+  <ng-container *ngIf=this.visibleForm>
+    <div class="container mb-4 mt-4" >
+      <h2>Nuevo Evento: {{evento.tipo_evento}}</h2>
+      <form (ngSubmit)="alta()">
+
+        <div class="form-group">
+          <label for="droga">Droga:</label>
+          <input  type="text" class="form-control" placeholder="ingrese una droga" name="droga" [(ngModel)]="evento.droga">
+        </div>
+
+        <div class="form-group">
+          <label for="resultado">Resultado:</label>
+          <input type="text" class="form-control" placeholder="ingrese un resultado" name="resultado" [(ngModel)]="evento.resultado">
+        </div>
+
+        <button type="submit"  class="btn btn-primary">Registrar</button>
+      </form>
+    </div>
+  </ng-container>
+</div>
+<h2>Eventos Futuros de {{mascota.nombre}}</h2>
 <ng-container *ngIf="posteriores === null; else post">
 <h4>No posee eventos futuros</h4>
 </ng-container>
