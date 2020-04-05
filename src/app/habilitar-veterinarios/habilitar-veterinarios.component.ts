@@ -22,7 +22,7 @@ export class HabilitarVeterinariosComponent implements OnInit {
     this.adminservice.habilitarVeterinario(id).subscribe(
       data => {
         alert('veterinario habilitado con exito');
-        this.veterinarios = data;
+        location.reload();
       }
     );
   }
