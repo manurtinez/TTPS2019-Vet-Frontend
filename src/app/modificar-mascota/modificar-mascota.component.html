@@ -69,7 +69,7 @@
         <input type="checkbox" name="checkNaci" formControlName="checkNaci" class="form-check-input" id="">
         <label for="checkNaci">¿Público?</label>
       </div>
-      <input type="date" class="form-control" id="nacimiento" name="nacimiento" formControlName="nacimiento">
+      <input type="date" class="form-control" id="nacimiento" name="nacimiento" formControlName="nacimiento" [ngModel]="this.naci | date:'yyyy-MM-dd'">
     </div>
     <button type="submit" [disabled]="!formMascota.valid" style="margin-top: 30px;"
       class="btn btn-primary">Agregar</button>

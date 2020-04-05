@@ -13,6 +13,7 @@ import { ConfigFicha } from '../models/configFicha';
 export class ModificarMascotaComponent implements OnInit {
   public mascota: Mascota;
   formMascota: FormGroup;
+  naci: Date;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,12 +29,12 @@ export class ModificarMascotaComponent implements OnInit {
       .subscribe(
         data => {
           this.mascota = data;
-          const fecha = new Date(this.mascota.nacimiento);
+          this.naci = new Date(this.mascota.nacimiento);
           this.formMascota = this.formBuilder.group({
             nombre: [this.mascota.nombre, Validators.required],
             color: [this.mascota.color, Validators.required],
             especie: [this.mascota.especie, Validators.required],
-            nacimiento: [fecha, Validators.required],
+            nacimiento: [this.naci, Validators.required],
             sexo: [this.mascota.sexo, Validators.required],
             senas: [this.mascota.senas, Validators.required],
             raza: [this.mascota.raza, Validators.required],
