@@ -58,6 +58,21 @@ export class HistorialUnaMascotaComponent implements OnInit {
         }
       );
   }
+  isVisita() {
+    return  (this.evento.tipo_evento === 'Visita');
+  }
+  isVacunacionEnfermedadIntervencionVisita() {
+    return ((this.evento.tipo_evento === 'Vacunacion')
+    || (this.evento.tipo_evento === 'Enfermedad')
+    || (this.evento.tipo_evento === 'Intervencion')
+    || (this.evento.tipo_evento === 'Visita'));
+  }
+  isHistorialRepoductivo() {
+    return (this.evento.tipo_evento === 'HistorialReproductivo');
+  }
+  isDesparasitacion() {
+    return (this.evento.tipo_evento === 'Desparasitacion');
+  }
   toggleEvento() {
     this.visibleEventos = !this.visibleEventos;
   }
@@ -79,13 +94,15 @@ export class HistorialUnaMascotaComponent implements OnInit {
   }
   toggleIntervencion() {
     this.visibleForm = !this.visibleForm;
-    this.evento.tipo_evento = 'Intervención';
+    this.evento.tipo_evento = 'Intervencion';
   }
   toggleHistorialReproductivo() {
     this.visibleForm = !this.visibleForm;
     this.evento.tipo_evento = 'HistorialReproductivo';
   }
   alta() {
+    this.evento.mascotaId = this.id;
+    console.log(this.evento.fecha);
     alert('Evento creado correctamente');
     this.visibleForm = false;
   }
