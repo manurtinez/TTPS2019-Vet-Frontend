@@ -10,7 +10,7 @@ export class MascotaService {
 
   public agregarMascota(mascota: Mascota, vetID: number) {
     const iddue = JSON.parse(localStorage.getItem('currentUser')).id;
-    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/${iddue}/nuevaMascota/${parseInt(vetID)}`, mascota);
+    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/${iddue}/nuevaMascota/${vetID}`, mascota);
   }
 
   public editarMascota(mascota: Mascota) {
