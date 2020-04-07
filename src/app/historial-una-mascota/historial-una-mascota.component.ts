@@ -121,6 +121,7 @@ export class HistorialUnaMascotaComponent implements OnInit {
       }
     );
     alert('Evento creado correctamente');
+    this.evento = new Evento('', 0, 0, null, '', '', '', '', '', 0, 0, 0);
     this.getHistorialUnaMascota();
     this.getEventosPosterioresDeUnaMascota();
     this.visibleForm = false;
