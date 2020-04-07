@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Evento } from '../models/evento';
 import { DuenoService } from '../services/dueno-service';
 import { Mascota } from '../models/mascota';
+import { VeterinarioService } from '../services/veterinario-service';
 
 @Component({
   selector: 'app-historial-eventos',
@@ -10,16 +11,16 @@ import { Mascota } from '../models/mascota';
 })
 export class HistorialEventosComponent implements OnInit {
   historial: Evento[];
-  duenoservice: DuenoService;
   error: string;
   mascotas: Mascota[];
+  rol = JSON.parse(localStorage.getItem('currentUser')).rol;
 
-  constructor(duenoservice: DuenoService) {
-    this.duenoservice = duenoservice;
+  constructor(private duenoservice: DuenoService, private veterniarioservice: VeterinarioService) {
     this.error = '';
    }
 
   ngOnInit() {
+    if (this.rol == 'Dueno') {
     this.duenoservice.getAllMascotas().subscribe(
       data => {
         this.mascotas = data;
@@ -38,7 +39,28 @@ export class HistorialEventosComponent implements OnInit {
         console.error(error);
       }
     );
-
+    } else {
+      this.veterniarioservice.getAllMascotas().subscribe(
+        data => {
+          this.mascotas = data;
+          console.log(this.mascotas)
+        },
+        error => {
+          this.error = 'no se pudieron recuperar las mascotas';
+          console.error(error);
+        }
+      );
+      this.veterniarioservice.getHistorial().subscribe(
+        data => {
+          this.historial = data;
+          console.log(this.historial)
+        },
+        error => {
+          this.error = 'no se pudo recuperar el historial';
+          console.error(error);
+        }
+      );
+    }
   }
   nombreMascota(mascotas, id) {
     for (let i = 0; i < mascotas.length; i++) {

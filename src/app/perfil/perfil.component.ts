@@ -21,13 +21,14 @@ export class PerfilComponent implements OnInit {
   formEditar: FormGroup;
   public mascotas: Mascota[];
   error = '';
+  rol = JSON.parse(localStorage.getItem('currentUser')).rol;
   public veterinarios: Veterinario[];
   constructor(
     private duenoservice: DuenoService,
     private veterinarioservice: VeterinarioService,
     private formBuilder: FormBuilder,
     private mascotaService: MascotaService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.formMascota = this.formBuilder.group({
@@ -57,15 +58,27 @@ export class PerfilComponent implements OnInit {
       senas: [null, Validators.required],
       raza: [null, Validators.required],
     });
-    this.duenoservice.getAllMascotas().subscribe(
-      (data) => {
-        this.mascotas = data;
-      },
-      (error) => {
-        this.error = 'no se pudieron recuperar las mascotas';
-        console.error(error);
-      }
-    );
+    if (this.rol == 'Dueno') {
+      this.duenoservice.getAllMascotas().subscribe(
+        (data) => {
+          this.mascotas = data;
+        },
+        (error) => {
+          this.error = 'no se pudieron recuperar las mascotas';
+          console.error(error);
+        }
+      );
+    } else {
+      this.veterinarioservice.getAllMascotas().subscribe(
+        (data) => {
+          this.mascotas = data;
+        },
+        (error) => {
+          this.error = 'no se pudieron recuperar las mascotas';
+          console.error(error);
+        }
+      );
+    }
     this.veterinarioservice.getAllVets().subscribe(
       (data) => {
         this.veterinarios = data;
@@ -135,7 +148,7 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-  agregarEvento() {}
+  agregarEvento() { }
 
   nombreMascota(mascotas, id) {
     for (let i = 0; i < mascotas.length; i++) {

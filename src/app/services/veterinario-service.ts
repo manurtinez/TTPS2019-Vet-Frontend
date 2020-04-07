@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Veterinario } from '../models/veterinario';
 import { HttpClient } from '@angular/common/http';
+import { Mascota } from '../models/mascota';
+import { Evento } from '../models/evento';
 
 @Injectable({ providedIn: 'root' })
 export class VeterinarioService {
@@ -19,5 +21,21 @@ export class VeterinarioService {
 
   getAllVets() {
     return this.http.get<Veterinario[]>(`http://localhost:8080/HistoriaClinicaMascotas/todos-los-veterinarios`);
+  }
+
+  getAllMascotas() {
+    const id = JSON.parse(localStorage.getItem('currentUser')).id;
+    console.log(id)
+    return this.http.get<Mascota[]>(`http://localhost:8080/HistoriaClinicaMascotas/veterinario/${id}/mascotas`);
+  }
+
+  getHistorial() {
+      const id = JSON.parse(localStorage.getItem('currentUser')).id;
+      const fecha = new Date();
+      const dd = String(fecha.getDate()).padStart(2, '0');
+      const mm = String(fecha.getMonth() + 1).padStart(2, '0');
+      const yyyy = fecha.getFullYear();
+      const hoy = yyyy + '-' + mm + '-' + dd;
+      return this.http.get<Evento[]>(`http://localhost:8080/HistoriaClinicaMascotas/veterinario/${id}/mascotas/eventos-anteriores/${hoy}`);
   }
 }

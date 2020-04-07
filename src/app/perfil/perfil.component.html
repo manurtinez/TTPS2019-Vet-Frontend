@@ -1,95 +1,98 @@
 <h1>Sección Mascotas</h1>
 
 <div class="perfilContainer">
-  <button class="btn btn-dark" (click)="this.mostrarAgregar = !this.mostrarAgregar">Agregar Mascota</button>
+  <ng-container *ngIf="rol == 'Dueno'">
+    <button class="btn btn-dark" (click)="this.mostrarAgregar = !this.mostrarAgregar">Agregar Mascota</button>
+    <form *ngIf="this.mostrarAgregar" [formGroup]="formMascota" (ngSubmit)="agregarMascota()">
+      <div class="row">
+        <div class="col">
+          <label for="nombre">Nombre de mascota</label>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" name="checkNombre" formControlName="checkNombre" class="form-check-input" id="">
+            <label for="checkNombre">¿Público?</label>
+          </div>
+          <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
+        </div>
+        <div class="col">
+          <label for="vet">Veterinario de mascota</label>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" name="checkVet" formControlName="checkVet" class="form-check-input" id="">
+            <label for="checkVet">¿Público?</label>
+          </div>
+          <select class="form-control" id="vet" name="vetID" formControlName="vetID">
+            <option value="-1" selected>--sin asignar--</option>
+            <option *ngFor="let v of veterinarios" value="{{v.id}}">{{v.nombre}}</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="sexo">Sexo</label>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" name="checkSexo" formControlName="checkSexo" class="form-check-input" id="">
+            <label for="checkSexo">¿Público?</label>
+          </div>
+          <br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sexo" formControlName="sexo" id="sexoM"
+              value="masculino">
+            <label class="form-check-label" for="sexoM">Masculino</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sexo" formControlName="sexo" id="sexoF" value="femenino">
+            <label class="form-check-label" for="sexoF">Femenino</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="especie">Especie</label>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" name="checkEspecie" formControlName="checkEspecie" class="form-check-input" id="">
+            <label for="checkEspecie">¿Público?</label>
+          </div>
+          <input type="text" class="form-control" id="especie" name="especie" formControlName="especie">
+        </div>
+        <div class="col">
+          <label for="color">Color</label>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" name="checkColor" formControlName="checkColor" class="form-check-input" id="">
+            <label for="checkColor">¿Público?</label>
+          </div>
+          <input type="text" class="form-control" id="color" name="color" formControlName="color">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="raza">Raza</label>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" name="checkRaza" formControlName="checkRaza" class="form-check-input" id="">
+            <label for="checkRaza">¿Público?</label>
+          </div>
+          <input type="text" class="form-control" id="raza" name="raza" formControlName="raza">
+        </div>
+        <div class="col">
+          <label for="senas">Señas</label>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" name="checkSenas" formControlName="checkSenas" class="form-check-input" id="">
+            <label for="checkSenas">¿Público?</label>
+          </div>
+          <input type="text" class="form-control" id="senas" name="senas" formControlName="senas">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="nacimiento">Nacimiento</label>
+          <div class="form-check form-check-inline">
+            <input type="checkbox" name="checkNaci" formControlName="checkNaci" class="form-check-input" id="">
+            <label for="checkNaci">¿Público?</label>
+          </div>
+          <input type="date" class="form-control" id="nacimiento" name="nacimiento" formControlName="nacimiento">
+        </div>
+        <button type="submit" [disabled]="!formMascota.valid" style="margin-top: 30px;"
+          class="btn btn-primary">Agregar</button>
+      </div>
+    </form>
+  </ng-container>
   <button class="ml-4 btn btn-info" routerLink="/historial-eventos">Ver Historial</button>
-  <form *ngIf="this.mostrarAgregar" [formGroup]="formMascota" (ngSubmit)="agregarMascota()">
-    <div class="row">
-      <div class="col">
-        <label for="nombre">Nombre de mascota</label>
-        <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkNombre" formControlName="checkNombre" class="form-check-input" id="">
-          <label for="checkNombre">¿Público?</label>
-        </div>
-        <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
-      </div>
-      <div class="col">
-        <label for="vet">Veterinario de mascota</label>
-        <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkVet" formControlName="checkVet" class="form-check-input" id="">
-          <label for="checkVet">¿Público?</label>
-        </div>
-        <select class="form-control" id="vet" name="vetID" formControlName="vetID">
-          <option value="-1" selected>--sin asignar--</option>
-          <option *ngFor="let v of veterinarios" value="{{v.id}}">{{v.nombre}}</option>
-        </select>
-      </div>
-      <div class="col">
-        <label for="sexo">Sexo</label>
-        <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkSexo" formControlName="checkSexo" class="form-check-input" id="">
-          <label for="checkSexo">¿Público?</label>
-        </div>
-        <br>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="sexo" formControlName="sexo" id="sexoM" value="masculino">
-          <label class="form-check-label" for="sexoM">Masculino</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="sexo" formControlName="sexo" id="sexoF" value="femenino">
-          <label class="form-check-label" for="sexoF">Femenino</label>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="especie">Especie</label>
-        <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkEspecie" formControlName="checkEspecie" class="form-check-input" id="">
-          <label for="checkEspecie">¿Público?</label>
-        </div>
-        <input type="text" class="form-control" id="especie" name="especie" formControlName="especie">
-      </div>
-      <div class="col">
-        <label for="color">Color</label>
-        <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkColor" formControlName="checkColor" class="form-check-input" id="">
-          <label for="checkColor">¿Público?</label>
-        </div>
-        <input type="text" class="form-control" id="color" name="color" formControlName="color">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="raza">Raza</label>
-        <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkRaza" formControlName="checkRaza" class="form-check-input" id="">
-          <label for="checkRaza">¿Público?</label>
-        </div>
-        <input type="text" class="form-control" id="raza" name="raza" formControlName="raza">
-      </div>
-      <div class="col">
-        <label for="senas">Señas</label>
-        <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkSenas" formControlName="checkSenas" class="form-check-input" id="">
-          <label for="checkSenas">¿Público?</label>
-        </div>
-        <input type="text" class="form-control" id="senas" name="senas" formControlName="senas">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label for="nacimiento">Nacimiento</label>
-        <div class="form-check form-check-inline">
-          <input type="checkbox" name="checkNaci" formControlName="checkNaci" class="form-check-input" id="">
-          <label for="checkNaci">¿Público?</label>
-        </div>
-        <input type="date" class="form-control" id="nacimiento" name="nacimiento" formControlName="nacimiento">
-      </div>
-      <button type="submit" [disabled]="!formMascota.valid" style="margin-top: 30px;"
-        class="btn btn-primary">Agregar</button>
-    </div>
-  </form>
   <h2 class="mt-4">Listado de mascotas</h2>
   <table class="table table-hover table-bordered">
     <thead>
