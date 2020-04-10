@@ -91,26 +91,42 @@ export class HistorialUnaMascotaComponent implements OnInit {
   toggleDesparasitacion() {
       this.visibleForm = !this.visibleForm;
       this.evento.tipo_evento = 'Desparasitacion';
+      this.evento.droga = '';
+      this.evento.resultado = '';
+      this.evento.fecha = null;
   }
   toggleVacunacion() {
     this.visibleForm = !this.visibleForm;
     this.evento.tipo_evento = 'Vacunacion';
+    this.evento.fecha = null;
+    this.evento.descripcion = '';
   }
   toggleEnfermedad() {
     this.visibleForm = !this.visibleForm;
     this.evento.tipo_evento = 'Enfermedad';
+    this.evento.fecha = null;
+    this.evento.descripcion = '';
   }
   toggleVisita() {
     this.visibleForm = !this.visibleForm;
     this.evento.tipo_evento = 'Visita';
+    this.evento.motivo = '';
+    this.evento.indicaciones = '';
+    this.evento.peso = 0;
+    this.evento.fecha = null;
+    this.evento.descripcion = '';
   }
   toggleIntervencion() {
     this.visibleForm = !this.visibleForm;
     this.evento.tipo_evento = 'Intervencion';
+    this.evento.fecha = null;
+    this.evento.descripcion = '';
   }
   toggleHistorialReproductivo() {
     this.visibleForm = !this.visibleForm;
     this.evento.tipo_evento = 'HistorialReproductivo';
+    this.evento.fecha = null;
+    this.evento.nro_nacidos = 0;
   }
   alta() {
     this.evento.mascotaId = this.id;
