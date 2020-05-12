@@ -15,10 +15,12 @@ import { Veterinario } from '../models/veterinario';
 })
 export class PerfilComponent implements OnInit {
   public mostrarAgregar: true;
+  mascotaid: number;
   public mostrarEvento: true;
   historial: Evento[];
   formMascota: FormGroup;
   formEditar: FormGroup;
+  formVet: FormGroup;
   public mascotas: Mascota[];
   error = '';
   rol = JSON.parse(localStorage.getItem('currentUser')).rol;
@@ -58,6 +60,9 @@ export class PerfilComponent implements OnInit {
       senas: [null, Validators.required],
       raza: [null, Validators.required],
     });
+    this.formVet = this.formBuilder.group({
+      vet: [null],
+    })
     if (this.rol == 'Dueno') {
       this.duenoservice.getAllMascotas().subscribe(
         (data) => {
@@ -157,5 +162,13 @@ export class PerfilComponent implements OnInit {
       }
     }
     return '-';
+  }
+
+  editarVet() {
+    
+  }
+
+  asignaridmodal(mascotaid: number) {
+    this.mascotaid = mascotaid;
   }
 }
