@@ -1,31 +1,5 @@
 <h1>Sección Mascotas</h1>
-<!-- Modal -->
-<div class="modal fade" id="modalVet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Veterinario Asignado</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="formVet" (ngSubmit)="editarVet()">
-          <input type="text" name="mascotaid" value="{{mascotaid}}" placeholder="{{mascotaid}}">
-          <p>{{mascotaid}}</p>
-          <select class="form-control" id="vet" name="vetID" formControlName="vetID">
-            <option value="-1" selected>--sin asignar--</option>
-            <option *ngFor="let v of veterinarios" value="{{v.id}}">{{v.nombre}}</option>
-          </select>
-          <button type="submit" style="margin-top: 30px;" class="btn-primary">Editar</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="closebutton" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 <div class="perfilContainer">
   <ng-container *ngIf="rol == 'Dueno'">
     <button class="btn btn-dark" (click)="this.mostrarAgregar = !this.mostrarAgregar">Agregar Mascota</button>
@@ -118,7 +92,6 @@
       </div>
     </form>
   </ng-container>
-  {{mascotaid}}
   <button class="ml-4 btn btn-info" routerLink="/historial-eventos">Ver Historial</button>
   <h2 class="mt-4">Listado de mascotas</h2>
   <table class="table table-hover table-bordered">
@@ -144,12 +117,7 @@
         <td>{{mascota.color}}</td>
         <td>{{mascota.senas}}</td>
         <td>{{mascota.nacimiento | date}}</td>
-        <td>
-          {{mascota.veterinario.nombre}}
-          <button (click)="asignaridmodal(mascota.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVet">
-            Editar
-          </button>
-        </td>
+        <td>{{mascota.veterinario.nombre}}</td>
         <td>
           <nav class="buttons">
             <a class="btn btn-primary"
@@ -169,5 +137,3 @@
     </tbody>
   </table>
 </div>
-<script>
-</script>
