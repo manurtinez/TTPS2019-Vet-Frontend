@@ -7,7 +7,7 @@ import { Evento } from '../models/evento';
   ({ providedIn: 'root' })
 export class MascotaService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public agregarMascota(mascota: Mascota, vetID: number) {
     const iddue = JSON.parse(localStorage.getItem('currentUser')).id;
@@ -16,6 +16,13 @@ export class MascotaService {
 
   public editarMascota(mascota: Mascota) {
     return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/editarMascota/${mascota.id}`, mascota);
+  }
+
+  public asignarVet(mascota: Mascota, vetId: number) {
+    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/mascota/${mascota.id}/asignar-veterinario`,
+      JSON.stringify(vetId), {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   public eliminarMascota(idMascota: number) {

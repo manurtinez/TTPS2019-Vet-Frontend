@@ -110,14 +110,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let mascota of mascotas">
-        <td>{{mascota.nombre}}</td>
-        <td>{{mascota.especie}}</td>
-        <td>{{mascota.raza}}</td>
-        <td>{{mascota.sexo}}</td>
-        <td>{{mascota.color}}</td>
-        <td>{{mascota.senas}}</td>
-        <td>{{mascota.nacimiento | date}}</td>
-        <td>{{mascota.veterinario.nombre}}</td>
+        <td>{{mascota?.nombre}}</td>
+        <td>{{mascota?.especie}}</td>
+        <td>{{mascota?.raza}}</td>
+        <td>{{mascota?.sexo}}</td>
+        <td>{{mascota?.color}}</td>
+        <td>{{mascota?.senas}}</td>
+        <td>{{mascota?.nacimiento | date}}</td>
+        <td>{{mascota.veterinario ? mascota.veterinario.nombre : "sin veterinario asignado"}}</td>
         <td>
           <nav class="buttons">
             <a class="btn btn-primary"

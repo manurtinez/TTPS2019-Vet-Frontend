@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MascotaService } from '../services/mascota-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfigFicha } from '../models/configFicha';
+import { VeterinarioService } from '../services/veterinario-service';
+import { Veterinario } from '../models/veterinario';
 
 @Component({
   selector: 'app-modificar-mascota',
@@ -14,15 +16,26 @@ export class ModificarMascotaComponent implements OnInit {
   public mascota: Mascota;
   formMascota: FormGroup;
   naci: Date;
+  todosVets: Veterinario[];
 
   constructor(
     private route: ActivatedRoute,
     private mascotaService: MascotaService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private veterinarioService: VeterinarioService
   ) { }
 
   ngOnInit() {
+    this.veterinarioService.getAllVets().subscribe(
+      data => {
+        this.todosVets = data;
+        console.log(this.todosVets)
+      },
+      error => {
+        console.log(error);
+      }
+    );
     this.mascotaService
       // tslint:disable-next-line: radix
       .getMascota(parseInt(this.route.snapshot.paramMap.get('id')))
@@ -35,6 +48,7 @@ export class ModificarMascotaComponent implements OnInit {
             color: [this.mascota.color, Validators.required],
             especie: [this.mascota.especie, Validators.required],
             nacimiento: [this.naci, Validators.required],
+            vetID: [this.mascota.veterinario, Validators.required],
             sexo: [this.mascota.sexo, Validators.required],
             senas: [this.mascota.senas, Validators.required],
             raza: [this.mascota.raza, Validators.required],
@@ -45,6 +59,7 @@ export class ModificarMascotaComponent implements OnInit {
             checkSexo: [this.mascota.configFicha.sexo],
             checkRaza: [this.mascota.configFicha.raza],
             checkSenas: [this.mascota.configFicha.senas],
+            checkVet: [this.mascota.configFicha.veterinario],
           });
         },
         error => {
@@ -63,7 +78,7 @@ export class ModificarMascotaComponent implements OnInit {
       this.formMascota.controls.checkSenas.value,
       this.formMascota.controls.checkNaci.value,
       false,
-      false
+      this.formMascota.controls.checkVet.value,
     );
     this.mascota.color = this.formMascota.controls.color.value,
     this.mascota.especie = this.formMascota.controls.especie.value,
@@ -82,5 +97,6 @@ export class ModificarMascotaComponent implements OnInit {
         console.log(error);
       }
     );
+    this.mascotaService.asignarVet(this.mascota, this.formMascota.controls.vetID.value).subscribe();
   }
 }
