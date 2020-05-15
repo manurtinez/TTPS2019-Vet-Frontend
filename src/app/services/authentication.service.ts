@@ -24,10 +24,17 @@ export class AuthenticationService {
     return this.http.post<any>('http://localhost:8080/HistoriaClinicaMascotas/autenticacion', user)
       .pipe(map(credentials => {
         if (credentials && credentials.token) {
-          localStorage.setItem('currentUser', JSON.stringify(credentials));
-          this.currentUserSubject.next(credentials);
+          console.log(credentials)
+          if ((credentials.rol == 'Veterinario' && credentials.habilitado == true) 
+          || (credentials.rol == 'Dueno' || credentials.rol == "Admin")) {
+            localStorage.setItem('currentUser', JSON.stringify(credentials));
+            this.currentUserSubject.next(credentials);
+            return credentials;
+          }
+          else {
+            alert('usted no se encuentra habilitado');
+          }
         }
-        return credentials;
       }));
   }
 
