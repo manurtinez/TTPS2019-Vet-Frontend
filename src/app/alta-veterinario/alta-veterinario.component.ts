@@ -8,7 +8,7 @@ import { VeterinarioService } from '../services/veterinario-service';
   styleUrls: ['./alta-veterinario.component.css']
 })
 export class AltaVeterinarioComponent implements OnInit {
-  vet: Veterinario = new Veterinario (0, '', '', '', '', null, '', '', null);
+  vet: Veterinario = new Veterinario (0, '', '', '', '', null, '', '', null, 0);
   constructor(private veterinarioService: VeterinarioService) { }
 
   ngOnInit() { }

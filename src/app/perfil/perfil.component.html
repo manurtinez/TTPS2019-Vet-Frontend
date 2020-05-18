@@ -93,6 +93,7 @@
     </form>
   </ng-container>
   <button class="ml-4 btn btn-info" routerLink="/historial-eventos">Ver Historial</button>
+  <button *ngIf="rol == 'Veterinario'" class="ml-4 btn btn-info" routerLink="/mascotasVet-pendientes">Mascotas pendientes</button>
   <h2 class="mt-4">Listado de mascotas</h2>
   <table class="table table-hover table-bordered">
     <thead>

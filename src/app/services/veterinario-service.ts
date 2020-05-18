@@ -19,6 +19,11 @@ export class VeterinarioService {
     return true;
   }
 
+  getMascotasPendientes() {
+    const id = JSON.parse(localStorage.getItem('currentUser')).id;
+    return this.http.get<Mascota[]>(`http://localhost:8080/HistoriaClinicaMascotas/veterinario/${id}/mascotas-pendientes`);
+  }
+
   getAllVets() {
     return this.http.get<Veterinario[]>(`http://localhost:8080/HistoriaClinicaMascotas/todos-los-veterinarios`);
   }
@@ -37,5 +42,13 @@ export class VeterinarioService {
       const yyyy = fecha.getFullYear();
       const hoy = yyyy + '-' + mm + '-' + dd;
       return this.http.get<Evento[]>(`http://localhost:8080/HistoriaClinicaMascotas/veterinario/${id}/mascotas/eventos-anteriores/${hoy}`);
+  }
+
+  aceptarMascota(id: number) {
+    return this.http.get<any>(`http://localhost:8080/HistoriaClinicaMascotas/veterinario/mascotas/${id}/aceptar-mascota`);
+  }
+  
+  rechazarMascota(id: number) {
+    return this.http.get<any>(`http://localhost:8080/HistoriaClinicaMascotas/veterinario/mascotas/${id}/rechazar-mascota`);
   }
 }

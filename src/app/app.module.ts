@@ -16,6 +16,7 @@ import { HabilitarVeterinariosComponent } from './habilitar-veterinarios/habilit
 import { HistorialEventosComponent } from './historial-eventos/historial-eventos.component';
 import { ModificarMascotaComponent } from './modificar-mascota/modificar-mascota.component';
 import { HistorialUnaMascotaComponent } from './historial-una-mascota/historial-una-mascota.component';
+import { MascotasVetPendientesComponent } from './mascotas-vet-pendientes/mascotas-vet-pendientes.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HistorialUnaMascotaComponent } from './historial-una-mascota/historial-
     HabilitarVeterinariosComponent,
     HistorialEventosComponent,
     ModificarMascotaComponent,
-    HistorialUnaMascotaComponent
+    HistorialUnaMascotaComponent,
+    MascotasVetPendientesComponent
   ],
   imports: [
     AppRoutingModule,

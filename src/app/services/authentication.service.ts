@@ -25,7 +25,9 @@ export class AuthenticationService {
       .pipe(map(credentials => {
         if (credentials && credentials.token) {
           console.log(credentials)
-          if ((credentials.rol == 'Veterinario' && credentials.habilitado == true) 
+          if ((credentials.rol == 'Veterinario' 
+          //&& credentials.habilitado == true
+          ) 
           || (credentials.rol == 'Dueno' || credentials.rol == "Admin")) {
             localStorage.setItem('currentUser', JSON.stringify(credentials));
             this.currentUserSubject.next(credentials);
