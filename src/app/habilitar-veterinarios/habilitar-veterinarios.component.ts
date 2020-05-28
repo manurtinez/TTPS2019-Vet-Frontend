@@ -18,11 +18,12 @@ export class HabilitarVeterinariosComponent implements OnInit {
       }
     );
   }
-  habilitarVeterinario(id: number) {
-    this.adminservice.habilitarVeterinario(id).subscribe(
+  habilitarVeterinario(v: Veterinario) {
+    this.adminservice.habilitarVeterinario(v.id).subscribe(
       data => {
         alert('veterinario habilitado con exito');
-        location.reload();
+        const index = this.veterinarios.indexOf(v);
+        this.veterinarios.splice(index, 1);
       }
     );
   }

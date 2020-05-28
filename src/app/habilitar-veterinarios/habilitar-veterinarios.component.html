@@ -9,7 +9,7 @@
     <tr *ngFor="let v of veterinarios">
       <td>{{v.nombre}} {{v.apellido}}</td>
       <td>{{v.nroMatricula}}</td>
-      <td><button class="btn btn-info btn-sm" (click)="habilitarVeterinario(v.id)">aceptar</button></td>
+      <td><button class="btn btn-info btn-sm" (click)="habilitarVeterinario(v)">aceptar</button></td>
     </tr>
   </tbody>
 </table>
