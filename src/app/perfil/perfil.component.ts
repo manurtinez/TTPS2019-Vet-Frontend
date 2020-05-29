@@ -14,7 +14,7 @@ import { Veterinario } from '../models/veterinario';
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
-  public mostrarAgregar: true;
+  public mostrarAgregar: boolean = false;
   public mostrarEvento: true;
   historial: Evento[];
   formMascota: FormGroup;
@@ -130,6 +130,7 @@ export class PerfilComponent implements OnInit {
       }
     );
     this.mascotas.push(mascota);
+    this.mostrarAgregar = false;
   }
 
   eliminarMascota(mascota: Mascota) {
