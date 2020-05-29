@@ -20,7 +20,7 @@
     <tbody>
       <tr *ngFor="let h of historial">
         <td>{{this.nombreMascota(this.mascotas, h.mascotaId)}}</td>
-        <td>{{h.fecha}}</td>
+        <td>{{h.fecha | date}}</td>
         <td>{{h.tipo_evento}}</td>
         <td>{{h.descripcion ? h.descripcion : '-'}}</td>
         <td>{{h.droga ? h.droga : '-'}}</td>

@@ -30,7 +30,6 @@ export class VeterinarioService {
 
   getAllMascotas() {
     const id = JSON.parse(localStorage.getItem('currentUser')).id;
-    console.log(id)
     return this.http.get<Mascota[]>(`http://localhost:8080/HistoriaClinicaMascotas/veterinario/${id}/mascotas`);
   }
 

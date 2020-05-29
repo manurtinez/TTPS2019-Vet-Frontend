@@ -30,7 +30,6 @@ export class ModificarMascotaComponent implements OnInit {
     this.veterinarioService.getAllVets().subscribe(
       data => {
         this.todosVets = data;
-        console.log(this.todosVets)
       },
       error => {
         console.log(error);

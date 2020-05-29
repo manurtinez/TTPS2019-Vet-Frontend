@@ -90,7 +90,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let p of posteriores">
-          <td>{{p.fecha}}</td>
+          <td>{{p.fecha | date}}</td>
           <td>{{p.tipo_evento}}</td>
           <td>{{p.descripcion ? p.descripcion : '-'}}</td>
           <td>{{p.droga ? p.droga : '-'}}</td>
@@ -127,7 +127,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let h of historial">
-          <td>{{h.fecha}}</td>
+          <td>{{h.fecha | date}}</td>
           <td>{{h.tipo_evento}}</td>
           <td>{{h.descripcion ? h.descripcion : '-'}}</td>
           <td>{{h.droga ? h.droga : '-'}}</td>

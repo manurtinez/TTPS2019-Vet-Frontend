@@ -130,7 +130,6 @@ export class HistorialUnaMascotaComponent implements OnInit {
   }
   alta() {
     this.evento.mascotaId = this.id;
-    console.log(this.evento.fecha);
     this.eventoService.altaEvento(this.evento).subscribe(
       data => {
         console.log(data);

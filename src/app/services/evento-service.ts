@@ -8,8 +8,6 @@ export class EventoService {
 
   constructor(private http: HttpClient) {}
   altaEvento(e: Evento) {
-    const fecha: Date = e.fecha;
-    e.fecha = null;
-    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/mascota/${e.mascotaId}/nuevo-evento/${fecha}`, e);
+    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/mascota/${e.mascotaId}/nuevo-evento/`, e);
   }
 }

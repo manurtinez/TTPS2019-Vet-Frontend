@@ -22,7 +22,6 @@ export class MascotasVetPendientesComponent implements OnInit {
     this.veterinarioservice.getMascotasPendientes().subscribe(
       data => {
         this.mascotas = data;
-        console.log(this.mascotas)
       },
       error => {
         console.error(error);
@@ -31,7 +30,6 @@ export class MascotasVetPendientesComponent implements OnInit {
   }
 
   aceptarMascota(m: Mascota) {
-    console.log(m.nombre);
     this.veterinarioservice.aceptarMascota(m.id).subscribe(
       data => {
         alert('mascota aceptada con exito');

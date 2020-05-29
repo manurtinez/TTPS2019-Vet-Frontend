@@ -9,10 +9,10 @@
   <div class="carousel-inner">
     <div style="height: 500px; text-align: center; line-height: 250px;" class="carousel-item active">
       <h1>{{ultimasMascotas[0].configFicha.nombre ? ultimasMascotas[0].nombre : 'NOMBRE PRIVADO'}}</h1>
-      <h1>{{ultimasMascotas[0].raza}}</h1>
-      <h1>{{ultimasMascotas[0].sexo}}</h1>
-      <h1>{{ultimasMascotas[0].senas}}</h1>
-      <h1>{{ultimasMascotas[0].nacimiento | date}}</h1>
+      <h1>{{ultimasMascotas[0].configFicha.raza ? ultimasMascotas[0].raza : 'RAZA PRIVADA'}}</h1>
+      <h1>{{ultimasMascotas[0].configFicha.sexo ? ultimasMascotas[0].sexo : 'SEXO PRIVADO'}}</h1>
+      <h1>{{ultimasMascotas[0].configFicha.senas ? ultimasMascotas[0].senas : 'SEÑAS PRIVADAS'}}</h1>
+      <h1>{{ultimasMascotas[0].configFicha.nacimiento ? (ultimasMascotas[0].nacimiento | date) : 'NACIMIENTO PRIVADO'}}</h1>
     </div>
     <div *ngFor="let m of ultimasMascotas | slice:1" style="height: 500px; text-align: center; line-height: 250px;" class="carousel-item">
       <h1>{{m.configFicha.nombre ? m.nombre : '(nombre privado)'}}</h1>

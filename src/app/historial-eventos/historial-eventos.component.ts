@@ -43,7 +43,6 @@ export class HistorialEventosComponent implements OnInit {
       this.veterniarioservice.getAllMascotas().subscribe(
         data => {
           this.mascotas = data;
-          console.log(this.mascotas)
         },
         error => {
           this.error = 'no se pudieron recuperar las mascotas';
@@ -53,7 +52,6 @@ export class HistorialEventosComponent implements OnInit {
       this.veterniarioservice.getHistorial().subscribe(
         data => {
           this.historial = data;
-          console.log(this.historial)
         },
         error => {
           this.error = 'no se pudo recuperar el historial';
