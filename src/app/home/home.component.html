@@ -1,5 +1,7 @@
-<h1>Pagina de Home</h1>
-<h2>Fichas recientes</h2>
+<div class="headerHome">
+  <h1>Pagina de Home</h1>
+  <h2>Fichas recientes</h2>
+</div>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -7,19 +9,25 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-    <div style="height: 500px; text-align: center; line-height: 250px;" class="carousel-item active">
-      <h1>{{ultimasMascotas[0].configFicha.nombre ? ultimasMascotas[0].nombre : 'NOMBRE PRIVADO'}}</h1>
-      <h1>{{ultimasMascotas[0].configFicha.raza ? ultimasMascotas[0].raza : 'RAZA PRIVADA'}}</h1>
-      <h1>{{ultimasMascotas[0].configFicha.sexo ? ultimasMascotas[0].sexo : 'SEXO PRIVADO'}}</h1>
-      <h1>{{ultimasMascotas[0].configFicha.senas ? ultimasMascotas[0].senas : 'SEÑAS PRIVADAS'}}</h1>
-      <h1>{{ultimasMascotas[0].configFicha.nacimiento ? (ultimasMascotas[0].nacimiento | date) : 'NACIMIENTO PRIVADO'}}</h1>
+    <div class="carousel-item active main" id="main">
+      <div class="infoContainer">
+        <h1>{{ultimasMascotas[0].configFicha.nombre ? ultimasMascotas[0].nombre : 'NOMBRE PRIVADO'}}</h1>
+        <h2>{{ultimasMascotas[0].configFicha.raza ? ultimasMascotas[0].raza : 'RAZA PRIVADA'}}</h2>
+        <h2>{{ultimasMascotas[0].configFicha.sexo ? ultimasMascotas[0].sexo : 'SEXO PRIVADO'}}</h2>
+        <h2>{{ultimasMascotas[0].configFicha.senas ? ultimasMascotas[0].senas : 'SEÑAS PRIVADAS'}}</h2>
+        <h2>
+          {{ultimasMascotas[0].configFicha.nacimiento ? (ultimasMascotas[0].nacimiento | date) : 'NACIMIENTO PRIVADO'}}
+        </h2>
+      </div>
     </div>
-    <div *ngFor="let m of ultimasMascotas | slice:1" style="height: 500px; text-align: center; line-height: 250px;" class="carousel-item">
-      <h1>{{m.configFicha.nombre ? m.nombre : '(nombre privado)'}}</h1>
-      <h1>{{m.configFicha.raza ? m.raza : '(raza privada)'}}</h1>
-      <h1>{{m.configFicha.sexo ? m.sexo : '(sexo privado)'}}</h1>
-      <h1>{{m.configFicha.senas ? m.senas : '(señas privadas)'}}</h1>
-      <h1>{{m.configFicha.nacimiento ? (m.nacimiento | date) : '(fecha de nacimiento privada)'}}</h1>
+    <div *ngFor="let m of ultimasMascotas | slice:1" class="carousel-item secondary" id="secondary">
+      <div class="infoContainer">
+        <h1>{{m.configFicha.nombre ? m.nombre : 'NOMBRE PRIVADO'}}</h1>
+        <h2>{{m.configFicha.raza ? m.raza : 'RAZA PRIVADA'}}</h2>
+        <h2>{{m.configFicha.sexo ? m.sexo : 'SEXO PRIVADO'}}</h2>
+        <h2>{{m.configFicha.senas ? m.senas : 'SEÑAS PRIVADAS'}}</h2>
+        <h2>{{m.configFicha.nacimiento ? (m.nacimiento | date) : 'NACIMIENTO PRIVADO'}}</h2>
+      </div>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

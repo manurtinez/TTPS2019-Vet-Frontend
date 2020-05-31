@@ -1,0 +1,26 @@
+.headerHome {
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.carousel-item {
+    height: 400px;
+    text-align: center;
+    line-height: 250px; 
+}
+
+#main {
+    background-image: url(../../assets/images/gato.jpg);
+}
+
+#secondary {
+    background-image: url(../../assets/images/perro.jpg);
+}
+
+.infoContainer {
+    height: 100%;
+    width: 300px;
+    background-color: rgba(255,255,255, 0.5);
+}
