@@ -16,7 +16,7 @@ export class HistorialUnaMascotaComponent implements OnInit {
   mascota: Mascota;
   historial: Evento[];
   posteriores: Evento[];
-  evento: Evento = new Evento('', 0, 0, null, '', '', '', '', '', 0, 0, 0);
+  evento: Evento = new Evento('Desparasitacion', 0, 0, null, '', '', '', '', '', 0, 0, 0);
   mascotaService: MascotaService;
   eventoService: EventoService;
   visibleEventos = false;
@@ -25,7 +25,7 @@ export class HistorialUnaMascotaComponent implements OnInit {
     this.route = route;
     this.mascotaService = mascotaService;
     this.eventoService = eventoService;
-   }
+  }
 
   ngOnInit() {
     // tslint:disable-next-line: radix
@@ -36,48 +36,48 @@ export class HistorialUnaMascotaComponent implements OnInit {
   }
   getHistorialUnaMascota() {
     this.mascotaService
-    .getHistorialUnaMascota(this.id)
-    .subscribe(
-      data => {
-        this.historial = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      .getHistorialUnaMascota(this.id)
+      .subscribe(
+        data => {
+          this.historial = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
   getMascota() {
     this.mascotaService
-    .getMascota(this.id)
-    .subscribe(
-      data => {
-        this.mascota = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      .getMascota(this.id)
+      .subscribe(
+        data => {
+          this.mascota = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
   getEventosPosterioresDeUnaMascota() {
     this.mascotaService
-    .getEventosPosterioresDeUnaMascota(this.id)
-    .subscribe(
-      data => {
-        this.posteriores = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      .getEventosPosterioresDeUnaMascota(this.id)
+      .subscribe(
+        data => {
+          this.posteriores = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
   isVisita() {
-    return  (this.evento.tipo_evento === 'Visita');
+    return (this.evento.tipo_evento === 'Visita');
   }
   isVacunacionEnfermedadIntervencionVisita() {
     return ((this.evento.tipo_evento === 'Vacunacion')
-    || (this.evento.tipo_evento === 'Enfermedad')
-    || (this.evento.tipo_evento === 'Intervencion')
-    || (this.evento.tipo_evento === 'Visita'));
+      || (this.evento.tipo_evento === 'Enfermedad')
+      || (this.evento.tipo_evento === 'Intervencion')
+      || (this.evento.tipo_evento === 'Visita'));
   }
   isHistorialRepoductivo() {
     return (this.evento.tipo_evento === 'HistorialReproductivo');
@@ -87,28 +87,37 @@ export class HistorialUnaMascotaComponent implements OnInit {
   }
   toggleEvento() {
     this.visibleEventos = !this.visibleEventos;
+    this.visibleForm = !this.visibleForm;
   }
   toggleDesparasitacion() {
-      this.visibleForm = !this.visibleForm;
-      this.evento.tipo_evento = 'Desparasitacion';
-      this.evento.droga = '';
-      this.evento.resultado = '';
-      this.evento.fecha = null;
+    if (!this.visibleForm) {
+      this.visibleForm = true;
+    }
+    this.evento.tipo_evento = 'Desparasitacion';
+    this.evento.droga = '';
+    this.evento.resultado = '';
+    this.evento.fecha = null;
   }
   toggleVacunacion() {
-    this.visibleForm = !this.visibleForm;
+    if (!this.visibleForm) {
+      this.visibleForm = true;
+    }
     this.evento.tipo_evento = 'Vacunacion';
     this.evento.fecha = null;
     this.evento.descripcion = '';
   }
   toggleEnfermedad() {
-    this.visibleForm = !this.visibleForm;
+    if (!this.visibleForm) {
+      this.visibleForm = true;
+    }
     this.evento.tipo_evento = 'Enfermedad';
     this.evento.fecha = null;
     this.evento.descripcion = '';
   }
   toggleVisita() {
-    this.visibleForm = !this.visibleForm;
+    if (!this.visibleForm) {
+      this.visibleForm = true;
+    }
     this.evento.tipo_evento = 'Visita';
     this.evento.motivo = '';
     this.evento.indicaciones = '';
@@ -117,13 +126,17 @@ export class HistorialUnaMascotaComponent implements OnInit {
     this.evento.descripcion = '';
   }
   toggleIntervencion() {
-    this.visibleForm = !this.visibleForm;
+    if (!this.visibleForm) {
+      this.visibleForm = true;
+    }
     this.evento.tipo_evento = 'Intervencion';
     this.evento.fecha = null;
     this.evento.descripcion = '';
   }
   toggleHistorialReproductivo() {
-    this.visibleForm = !this.visibleForm;
+    if (!this.visibleForm) {
+      this.visibleForm = true;
+    }
     this.evento.tipo_evento = 'HistorialReproductivo';
     this.evento.fecha = null;
     this.evento.nro_nacidos = 0;
@@ -140,5 +153,28 @@ export class HistorialUnaMascotaComponent implements OnInit {
     this.getHistorialUnaMascota();
     this.getEventosPosterioresDeUnaMascota();
     this.visibleForm = false;
+  }
+
+  eliminarEvento(e: Evento) {
+    if (confirm('realmente quiere eliminar este evento?')) {
+      this.eventoService.eliminarEvento(e).subscribe(
+        success => {
+          let index: number;
+          alert('evento eliminado correctamente!');
+          if (this.posteriores.includes(e)) {
+            index = this.posteriores.indexOf(e);
+            this.posteriores.splice(index, 1);
+          }
+          else {
+            index = this.historial.indexOf(e);
+            this.historial.splice(index, 1);
+          }
+        },
+        error => {
+          alert('hubo algun problema eliminando el evento');
+          console.error(error);
+        }
+      )
+    }
   }
 }

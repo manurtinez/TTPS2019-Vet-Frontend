@@ -7,7 +7,13 @@ import { Evento } from '../models/evento';
 export class EventoService {
 
   constructor(private http: HttpClient) {}
+  
   altaEvento(e: Evento) {
     return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/mascota/${e.mascotaId}/nuevo-evento/`, e);
   }
+
+  eliminarEvento(e: Evento) {
+    return this.http.post<any>(`http://localhost:8080/HistoriaClinicaMascotas/dueno/mascota/${e.mascotaId}/borrar-evento/`, e);
+  }
+
 }
