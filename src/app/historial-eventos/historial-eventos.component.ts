@@ -3,6 +3,7 @@ import { Evento } from '../models/evento';
 import { DuenoService } from '../services/dueno-service';
 import { Mascota } from '../models/mascota';
 import { VeterinarioService } from '../services/veterinario-service';
+import { EventoService } from '../services/evento-service';
 
 @Component({
   selector: 'app-historial-eventos',
@@ -15,7 +16,7 @@ export class HistorialEventosComponent implements OnInit {
   mascotas: Mascota[];
   rol = JSON.parse(localStorage.getItem('currentUser')).rol;
 
-  constructor(private duenoservice: DuenoService, private veterniarioservice: VeterinarioService) {
+  constructor(private duenoservice: DuenoService, private veterniarioservice: VeterinarioService, private eventoService: EventoService) {
     this.error = '';
    }
 
@@ -67,6 +68,22 @@ export class HistorialEventosComponent implements OnInit {
       }
     }
     return '-';
+  }
+
+  eliminarEvento(e: Evento) {
+    if (confirm('realmente quiere eliminar este evento?')) {
+      this.eventoService.eliminarEvento(e).subscribe(
+        success => {
+          alert('el evento fue eliminado exitosamente!');
+          const index = this.historial.indexOf(e);
+          this.historial.splice(index, 1);
+        },
+        error => {
+          alert('hubo algun problema eliminando el evento');
+          console.error(error);
+        }
+      )
+    }
   }
 
 }

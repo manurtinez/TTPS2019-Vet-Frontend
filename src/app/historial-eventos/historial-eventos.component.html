@@ -15,6 +15,7 @@
         <th scope="col">Motivo</th>
         <th scope="col">Peso</th>
         <th scope="col">Numero nacidos</th>
+        <th scope="col">Opciones</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +30,9 @@
         <td>{{h.motivo ? h.motivo : '-'}}</td>
         <td>{{h.peso ? h.peso : '-'}}</td>
         <td>{{h.nro_nacidos ? h.nro_nacidos : '-'}}</td>
+        <td><button class="btn btn-primary"
+          style="margin-right: 10px;width: 30px; height: 30px;background-image: url(../../assets/images/basura.png); background-size: cover;"
+          title="Eliminar Evento" (click)="eliminarEvento(h)"></button></td>
       </tr>
     </tbody>
   </table>
