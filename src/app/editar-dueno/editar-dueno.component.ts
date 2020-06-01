@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Dueno } from '../models/dueno';
 import { DuenoService } from '../services/dueno-service';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-editar-dueno',
@@ -15,7 +16,7 @@ export class EditarDuenoComponent implements OnInit {
   email: string;
   telefono: number;
 
-  constructor(private duenoservice: DuenoService, private formBuilder: FormBuilder) { }
+  constructor(private duenoservice: DuenoService, private formBuilder: FormBuilder, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     const act = JSON.parse(localStorage.getItem('currentUser'));
@@ -41,15 +42,21 @@ export class EditarDuenoComponent implements OnInit {
     );
     this.duenoservice.editarDueno(d).subscribe(
       data => {
-        alert('dueno editado con exito');
         const json = JSON.parse(localStorage.getItem('currentUser'));
         json.usuario = this.form.controls.nombre.value;
         json.nombre = this.form.controls.nombre.value;
         json.apellido = this.form.controls.apellido.value;
         json.telefono = this.form.controls.telefono.value;
-        json.email = this.form.controls.email.value;
-        localStorage.setItem('currentUser', JSON.stringify(json));
-        location.reload();
+        alert('datos editados con exito');
+        if (json.email != this.form.controls.email.value) {
+          alert('por favor, vuelva a iniciar sesion');
+          json.email = this.form.controls.email.value;
+          this.authenticationService.logout();
+        }
+        else {
+          localStorage.setItem('currentUser', JSON.stringify(json));
+          location.reload();
+        }
       },
       error => {
         alert('error al editar');
