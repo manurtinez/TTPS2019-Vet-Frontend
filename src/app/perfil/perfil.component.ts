@@ -15,6 +15,7 @@ import { Veterinario } from '../models/veterinario';
 })
 export class PerfilComponent implements OnInit {
   public mostrarAgregar: boolean = false;
+  qrData: string;
   public mostrarEvento: true;
   historial: Evento[];
   formMascota: FormGroup;
@@ -27,7 +28,7 @@ export class PerfilComponent implements OnInit {
     private duenoservice: DuenoService,
     private veterinarioservice: VeterinarioService,
     private formBuilder: FormBuilder,
-    private mascotaService: MascotaService
+    private mascotaService: MascotaService,
   ) { }
 
   ngOnInit() {
@@ -157,5 +158,18 @@ export class PerfilComponent implements OnInit {
       }
     }
     return '-';
+  }
+
+  generarQR(mascota: Mascota) {
+    this.qrData = `
+      BEGIN:VCARD
+      VERSION:3.0
+      N:${mascota.nombre}
+      S:${mascota.sexo}
+      C:${mascota.color}
+      E:${mascota.especie}
+      R:${mascota.raza}
+      END:VCARD
+    `
   }
 }

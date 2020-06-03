@@ -132,6 +132,11 @@
               style="margin-right: 10px;width: 30px; height: 30px;background-image: url(../../assets/images/anotador.png); background-size: cover;"
               title="Historial de Mascota" [routerLink]="['/historial-una-mascota', mascota.id]">
             </button>
+            <button class="btn btn-primary"
+              style="margin-right: 10px;width: 30px; height: 30px; background-size: cover;"
+              title="Generar QR de Mascota" (click)="generarQR(mascota)">Generar QR
+            </button>
+            <qr-code [value]="qrData" [size]="150"></qr-code>
           </nav>
         </td>
       </tr>
