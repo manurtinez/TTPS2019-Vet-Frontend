@@ -123,14 +123,13 @@ export class PerfilComponent implements OnInit {
     this.mascotaService.agregarMascota(mascota, this.formMascota.controls.vetID.value).subscribe(
       (data) => {
         window.alert('mascota agregada con exito!');
+        location.reload()
       },
       (error) => {
         alert('error al crear mascota');
         console.log(error);
       }
     );
-    this.mascotas.push(mascota);
-    this.mostrarAgregar = false;
   }
 
   eliminarMascota(mascota: Mascota) {
