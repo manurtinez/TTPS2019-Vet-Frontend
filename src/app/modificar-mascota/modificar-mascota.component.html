@@ -10,17 +10,6 @@
       <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
     </div>
     <div class="col">
-      <label for="vet">Veterinario de mascota</label>
-      <div class="form-check form-check-inline">
-        <input type="checkbox" name="checkVet" formControlName="checkVet" class="form-check-input" id="">
-        <label for="checkVet">¿Público?</label>
-      </div>
-      <select class="form-control" id="vet" name="vetID" formControlName="vetID">
-        <!-- [selected]="v.id == mascota.veterinario.id" esto para dejar seleccionado el correspondiende pero no lo pude hacer andar -->
-        <option *ngFor="let v of todosVets" value="{{v.id}}">{{v.nombre}}</option>
-      </select>
-    </div>
-    <div class="col">
       <label for="sexo">Sexo</label>
       <div class="form-check form-check-inline">
         <input type="checkbox" name="checkSexo" formControlName="checkSexo" class="form-check-input" id="">
@@ -80,9 +69,30 @@
         <input type="checkbox" name="checkNaci" formControlName="checkNaci" class="form-check-input" id="">
         <label for="checkNaci">¿Público?</label>
       </div>
-      <input type="date" class="form-control" id="nacimiento" name="nacimiento" formControlName="nacimiento" [ngModel]="this.naci | date:'yyyy-MM-dd'">
+      <input type="date" class="form-control" id="nacimiento" name="nacimiento" formControlName="nacimiento"
+        [ngModel]="this.naci | date:'yyyy-MM-dd'">
     </div>
-    <button type="submit" [disabled]="!formMascota.valid" style="margin-top: 30px;"
-      class="btn btn-primary">Agregar</button>
+    <div class="col text-center">
+      <label for="vet">Veterinario de mascota:
+        {{mascota?.veterinario ? mascota.veterinario.nombre : 'Sin asignar'}}</label>
+      <div class="form-check form-check-inline">
+        <input type="checkbox" name="checkVet" formControlName="checkVet" class="form-check-input" id="">
+        <label for="checkVet">¿Público?</label>
+      </div>
+      <button class="btn-primary btn form-control" type="button" (click)="showSelect = !showSelect">
+        Cambiar
+      </button>
+      <div *ngIf="showSelect">
+        <select #selectVets (change)="asignarVet(selectVets.value)" class="form-control">
+          <option *ngFor="let v of todosVets" [value]="v.id">{{v.nombre}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <button type="submit" [disabled]="!formMascota.valid" style="margin-top: 30px;"
+        class="btn btn-primary">Agregar</button>
+    </div>
   </div>
 </form>

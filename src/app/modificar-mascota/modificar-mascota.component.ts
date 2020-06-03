@@ -16,6 +16,7 @@ export class ModificarMascotaComponent implements OnInit {
   public mascota: Mascota;
   formMascota: FormGroup;
   naci: Date;
+  showSelect: boolean = false;
   todosVets: Veterinario[];
 
   constructor(
@@ -41,13 +42,14 @@ export class ModificarMascotaComponent implements OnInit {
       .subscribe(
         data => {
           this.mascota = data;
+          console.log(this.mascota)
           this.naci = new Date(this.mascota.nacimiento);
           this.formMascota = this.formBuilder.group({
             nombre: [this.mascota.nombre, Validators.required],
             color: [this.mascota.color, Validators.required],
             especie: [this.mascota.especie, Validators.required],
             nacimiento: [this.naci, Validators.required],
-            vetID: [this.mascota.veterinario, Validators.required],
+            vetID: [this.mascota.veterinario],
             sexo: [this.mascota.sexo, Validators.required],
             senas: [this.mascota.senas, Validators.required],
             raza: [this.mascota.raza, Validators.required],
@@ -96,6 +98,18 @@ export class ModificarMascotaComponent implements OnInit {
         console.log(error);
       }
     );
-    this.mascotaService.asignarVet(this.mascota, this.formMascota.controls.vetID.value).subscribe();
+  }
+
+  asignarVet(id: number) {
+    this.mascotaService.asignarVet(this.mascota, this.formMascota.controls.vetID.value.id).subscribe(
+      data => {
+        alert('Veterinario asignado correctamente!');
+        this.showSelect = !this.showSelect;
+      },
+      error => {
+        alert('No se pudo asignar veterinario');
+        console.error(error);
+      }
+    );
   }
 }
