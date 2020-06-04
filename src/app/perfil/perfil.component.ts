@@ -7,6 +7,7 @@ import { MascotaService } from '../services/mascota-service';
 import { Evento } from '../models/evento';
 import { VeterinarioService } from '../services/veterinario-service';
 import { Veterinario } from '../models/veterinario';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-perfil',
@@ -15,6 +16,7 @@ import { Veterinario } from '../models/veterinario';
 })
 export class PerfilComponent implements OnInit {
   public mostrarAgregar: boolean = false;
+  qrData: string;
   public mostrarEvento: true;
   historial: Evento[];
   formMascota: FormGroup;
@@ -27,7 +29,8 @@ export class PerfilComponent implements OnInit {
     private duenoservice: DuenoService,
     private veterinarioservice: VeterinarioService,
     private formBuilder: FormBuilder,
-    private mascotaService: MascotaService
+    private mascotaService: MascotaService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -118,7 +121,8 @@ export class PerfilComponent implements OnInit {
       this.formMascota.controls.raza.value,
       this.formMascota.controls.senas.value,
       this.formMascota.controls.sexo.value,
-      config
+      config,
+      null
     );
     this.mascotaService.agregarMascota(mascota, this.formMascota.controls.vetID.value).subscribe(
       (data) => {
@@ -145,6 +149,7 @@ export class PerfilComponent implements OnInit {
           );
         }
         window.alert('mascota agregada con exito!');
+        location.reload()
       },
       (error) => {
         alert('error al crear mascota');
@@ -180,5 +185,21 @@ export class PerfilComponent implements OnInit {
       }
     }
     return '-';
+  }
+
+  generarQR(modal: any,mascota: Mascota) {
+    this.qrData =
+    `
+    Nombre:${mascota.nombre}
+    Sexo:${mascota.sexo}
+    Color:${mascota.color}
+    Especie:${mascota.especie}
+    Raza:${mascota.raza}
+    Dueño:${mascota.dueno.nombre}
+    Telefono de dueño:${mascota.dueno.telefono}
+    Veterinario:${mascota.veterinario ? mascota.veterinario.nombre : 'sin veterinario asignado'}
+    Telefono de veterinario:${mascota.veterinario ? mascota.veterinario.telefono : 'sin veterinario asignado'}
+    `
+    this.modalService.open(modal);
   }
 }

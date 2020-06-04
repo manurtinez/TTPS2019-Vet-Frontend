@@ -1,5 +1,15 @@
 <h1>Sección Mascotas</h1>
-
+<ng-template class="modalqr" #modalqr let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Codigo QR</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <qr-code [value]="qrData" [size]="300"></qr-code>
+  </div>
+</ng-template>
 <div class="perfilContainer">
   <ng-container *ngIf="rol == 'Dueno'">
     <button class="btn btn-dark" (click)="this.mostrarAgregar = !this.mostrarAgregar">Agregar Mascota</button>
@@ -131,6 +141,10 @@
             <button class="btn btn-primary"
               style="margin-right: 10px;width: 30px; height: 30px;background-image: url(../../assets/images/anotador.png); background-size: cover;"
               title="Historial de Mascota" [routerLink]="['/historial-una-mascota', mascota.id]">
+            </button>
+            <button class="btn btn-primary"
+              style="margin-right: 10px;width: 30px; height: 30px; background-size: cover; background-image: url(../../assets/images/qr2.png);"
+              title="Generar QR de Mascota" (click)="generarQR(modalqr, mascota)">
             </button>
           </nav>
         </td>

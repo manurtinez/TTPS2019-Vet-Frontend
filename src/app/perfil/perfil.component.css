@@ -5,3 +5,7 @@
 .form-check {
   margin-left: 10px;
 }
+
+.modal-body {
+  margin: 0 auto;
+}
