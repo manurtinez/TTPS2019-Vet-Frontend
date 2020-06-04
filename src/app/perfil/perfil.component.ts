@@ -7,6 +7,7 @@ import { MascotaService } from '../services/mascota-service';
 import { Evento } from '../models/evento';
 import { VeterinarioService } from '../services/veterinario-service';
 import { Veterinario } from '../models/veterinario';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-perfil',
@@ -29,6 +30,7 @@ export class PerfilComponent implements OnInit {
     private veterinarioservice: VeterinarioService,
     private formBuilder: FormBuilder,
     private mascotaService: MascotaService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -119,7 +121,8 @@ export class PerfilComponent implements OnInit {
       this.formMascota.controls.raza.value,
       this.formMascota.controls.senas.value,
       this.formMascota.controls.sexo.value,
-      config
+      config,
+      null
     );
     this.mascotaService.agregarMascota(mascota, this.formMascota.controls.vetID.value).subscribe(
       (data) => {
@@ -160,16 +163,19 @@ export class PerfilComponent implements OnInit {
     return '-';
   }
 
-  generarQR(mascota: Mascota) {
-    this.qrData = `
-      BEGIN:VCARD
-      VERSION:3.0
-      N:${mascota.nombre}
-      S:${mascota.sexo}
-      C:${mascota.color}
-      E:${mascota.especie}
-      R:${mascota.raza}
-      END:VCARD
+  generarQR(modal: any,mascota: Mascota) {
+    this.qrData = 
     `
+    Nombre:${mascota.nombre}
+    Sexo:${mascota.sexo}
+    Color:${mascota.color}
+    Especie:${mascota.especie}
+    Raza:${mascota.raza}
+    Dueño:${mascota.dueno.nombre}
+    Telefono de dueño:${mascota.dueno.telefono}
+    Veterinario:${mascota.veterinario ? mascota.veterinario.nombre : 'sin veterinario asignado'}
+    Telefono de veterinario:${mascota.veterinario ? mascota.veterinario.telefono : 'sin veterinario asignado'}
+    `
+    this.modalService.open(modal);
   }
 }

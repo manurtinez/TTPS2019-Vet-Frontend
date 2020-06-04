@@ -18,6 +18,7 @@ import { HistorialEventosComponent } from './historial-eventos/historial-eventos
 import { ModificarMascotaComponent } from './modificar-mascota/modificar-mascota.component';
 import { HistorialUnaMascotaComponent } from './historial-una-mascota/historial-una-mascota.component';
 import { MascotasVetPendientesComponent } from './mascotas-vet-pendientes/mascotas-vet-pendientes.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { MascotasVetPendientesComponent } from './mascotas-vet-pendientes/mascot
     HistorialEventosComponent,
     ModificarMascotaComponent,
     HistorialUnaMascotaComponent,
-    MascotasVetPendientesComponent
+    MascotasVetPendientesComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -40,7 +41,8 @@ import { MascotasVetPendientesComponent } from './mascotas-vet-pendientes/mascot
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    QRCodeModule
+    QRCodeModule,
+    NgbModule
   ],
   providers: [HttpClientModule,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
