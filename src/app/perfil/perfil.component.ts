@@ -122,6 +122,28 @@ export class PerfilComponent implements OnInit {
     );
     this.mascotaService.agregarMascota(mascota, this.formMascota.controls.vetID.value).subscribe(
       (data) => {
+        this.mostrarAgregar = false;
+        if (this.rol == 'Dueno') {
+          this.duenoservice.getAllMascotas().subscribe(
+            (data) => {
+              this.mascotas = data;
+            },
+            (error) => {
+              this.error = 'no se pudieron recuperar las mascotas';
+              console.error(error);
+            }
+          );
+        } else {
+          this.veterinarioservice.getAllMascotas().subscribe(
+            (data) => {
+              this.mascotas = data;
+            },
+            (error) => {
+              this.error = 'no se pudieron recuperar las mascotas';
+              console.error(error);
+            }
+          );
+        }
         window.alert('mascota agregada con exito!');
       },
       (error) => {
@@ -129,8 +151,8 @@ export class PerfilComponent implements OnInit {
         console.log(error);
       }
     );
-    this.mascotas.push(mascota);
-    this.mostrarAgregar = false;
+    //this.mascotas.push(mascota);
+    //this.mostrarAgregar = false;
   }
 
   eliminarMascota(mascota: Mascota) {
