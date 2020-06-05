@@ -18,6 +18,7 @@
       <select class="form-control" #vet (change)="modificarVet(vet.value)" id="vet" name="vetID" formControlName="vetID">
         <!-- [selected]="v.id == mascota.veterinario.id" esto para dejar seleccionado el correspondiende pero no lo pude hacer andar -->
         <option class="option" *ngFor="let v of todosVets" [value]="v.id">{{v.nombre}}</option>
+        <option value="-1" selected>--sin asignar--</option>
       </select>
     </div>
     <div class="col">

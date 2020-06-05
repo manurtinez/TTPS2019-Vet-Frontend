@@ -61,6 +61,89 @@ export class PerfilComponent implements OnInit {
       senas: [null, Validators.required],
       raza: [null, Validators.required],
     });
+    this.fetchMascotas();
+  }
+
+  agregarMascota() {
+    const config = new ConfigFicha(
+      this.formMascota.controls.checkNombre.value,
+      this.formMascota.controls.checkEspecie.value,
+      this.formMascota.controls.checkRaza.value,
+      this.formMascota.controls.checkSexo.value,
+      this.formMascota.controls.checkColor.value,
+      this.formMascota.controls.checkSenas.value,
+      this.formMascota.controls.checkNaci.value,
+      false,
+      this.formMascota.controls.checkVet.value,
+    );
+    const mascota = new Mascota(
+      this.formMascota.controls.color.value,
+      this.formMascota.controls.especie.value,
+      this.formMascota.controls.nacimiento.value,
+      this.formMascota.controls.nombre.value,
+      this.formMascota.controls.raza.value,
+      this.formMascota.controls.senas.value,
+      this.formMascota.controls.sexo.value,
+      config,
+      null
+    );
+    this.mascotaService.agregarMascota(mascota, this.formMascota.controls.vetID.value).subscribe(
+      (data) => {
+        window.alert('mascota agregada con exito!');
+        this.mascotas.push(mascota);
+        this.mostrarAgregar = false;
+      },
+      (error) => {
+        alert('error al crear mascota');
+        console.log(error);
+      }
+    );
+  }
+
+  eliminarMascota(mascota: Mascota) {
+    if (confirm(`Esta seguro de que quiere eliminar a ${mascota.nombre}?`)) {
+      this.mascotaService.eliminarMascota(mascota.id).subscribe(
+        (data) => {
+          window.alert('mascota eliminada exitosamente!');
+        },
+        (error) => {
+          alert('error al eliminar');
+          console.log(error);
+        }
+      );
+      const index = this.mascotas.indexOf(mascota);
+      this.mascotas.splice(index, 1);
+    }
+  }
+
+  agregarEvento() { }
+
+  nombreMascota(mascotas, id) {
+    for (let i = 0; i < mascotas.length; i++) {
+      if (mascotas[i].id == id) {
+        return mascotas[i].nombre;
+      }
+    }
+    return '-';
+  }
+
+  generarQR(modal: any,mascota: Mascota) {
+    this.qrData =
+    `
+    Nombre:${mascota.nombre}
+    Sexo:${mascota.sexo}
+    Color:${mascota.color}
+    Especie:${mascota.especie}
+    Raza:${mascota.raza}
+    Dueño:${mascota.dueno.nombre}
+    Telefono de dueño:${mascota.dueno.telefono}
+    Veterinario:${mascota.veterinario ? mascota.veterinario.nombre : 'sin veterinario asignado'}
+    Telefono de veterinario:${mascota.veterinario ? mascota.veterinario.telefono : 'sin veterinario asignado'}
+    `
+    this.modalService.open(modal);
+  }
+
+  fetchMascotas() {
     if (this.rol == 'Dueno') {
       this.duenoservice.getAllMascotas().subscribe(
         (data) => {
@@ -99,83 +182,5 @@ export class PerfilComponent implements OnInit {
         console.error(error);
       }
     );
-  }
-
-  agregarMascota() {
-    const config = new ConfigFicha(
-      this.formMascota.controls.checkNombre.value,
-      this.formMascota.controls.checkEspecie.value,
-      this.formMascota.controls.checkRaza.value,
-      this.formMascota.controls.checkSexo.value,
-      this.formMascota.controls.checkColor.value,
-      this.formMascota.controls.checkSenas.value,
-      this.formMascota.controls.checkNaci.value,
-      false,
-      this.formMascota.controls.checkVet.value,
-    );
-    const mascota = new Mascota(
-      this.formMascota.controls.color.value,
-      this.formMascota.controls.especie.value,
-      this.formMascota.controls.nacimiento.value,
-      this.formMascota.controls.nombre.value,
-      this.formMascota.controls.raza.value,
-      this.formMascota.controls.senas.value,
-      this.formMascota.controls.sexo.value,
-      config,
-      null
-    );
-    this.mascotaService.agregarMascota(mascota, this.formMascota.controls.vetID.value).subscribe(
-      (data) => {
-        window.alert('mascota agregada con exito!');
-        location.reload()
-      },
-      (error) => {
-        alert('error al crear mascota');
-        console.log(error);
-      }
-    );
-  }
-
-  eliminarMascota(mascota: Mascota) {
-    if (confirm(`Esta seguro de que quiere eliminar a ${mascota.nombre}?`)) {
-      this.mascotaService.eliminarMascota(mascota.id).subscribe(
-        (data) => {
-          window.alert('mascota eliminada exitosamente!');
-        },
-        (error) => {
-          alert('error al eliminar');
-          console.log(error);
-        }
-      );
-      const index = this.mascotas.indexOf(mascota);
-      this.mascotas.splice(index, 1);
-    }
-  }
-
-  agregarEvento() { }
-
-  nombreMascota(mascotas, id) {
-    for (let i = 0; i < mascotas.length; i++) {
-      if (mascotas[i].id == id) {
-        return mascotas[i].nombre;
-      }
-    }
-    return '-';
-  }
-
-  generarQR(modal: any,mascota: Mascota) {
-    this.qrData = 
-    `
-    Nombre:${mascota.nombre}
-    Sexo:${mascota.sexo}
-    Color:${mascota.color}
-    Especie:${mascota.especie}
-    Raza:${mascota.raza}
-    Dueño:${mascota.dueno.nombre}
-    Telefono de dueño:${mascota.dueno.telefono}
-    Veterinario:${mascota.veterinario ? mascota.veterinario.nombre : 'sin veterinario asignado'}
-    Telefono de veterinario:${mascota.veterinario ? mascota.veterinario.telefono : 'sin veterinario asignado'}
-    `
-    this.modalService.open(modal);
   }
 }
