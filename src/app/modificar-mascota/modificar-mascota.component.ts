@@ -96,6 +96,17 @@ export class ModificarMascotaComponent implements OnInit {
         console.log(error);
       }
     );
-    this.mascotaService.asignarVet(this.mascota, this.formMascota.controls.vetID.value).subscribe();
+  }
+
+  modificarVet(n: number) {
+    this.mascotaService.asignarVet(this.mascota, n).subscribe(
+      data => {
+        alert('veterinario modificado con exito!');
+      },
+      error => {
+        alert('ocurrio algun error al editar veterinario');
+        console.error(error)
+      }
+    );
   }
 }
