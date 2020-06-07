@@ -9,14 +9,16 @@ import { HistorialEventosComponent } from './historial-eventos/historial-eventos
 import { ModificarMascotaComponent } from './modificar-mascota/modificar-mascota.component';
 import { HistorialUnaMascotaComponent } from './historial-una-mascota/historial-una-mascota.component';
 import { MascotasVetPendientesComponent } from './mascotas-vet-pendientes/mascotas-vet-pendientes.component';
+import {AuthGuard} from './auth.guard'
+import { RoleGuard } from './role-guard.guard';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'perfil', component: PerfilComponent},
+  {path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
   {path: 'editar-dueno', component: EditarDuenoComponent},
-  {path: 'habilitar-veterinarios', component: HabilitarVeterinariosComponent},
+  {path: 'habilitar-veterinarios', component: HabilitarVeterinariosComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin' }},
   {path: 'historial-eventos', component: HistorialEventosComponent},
   {path: 'editar-mascota/:id', component: ModificarMascotaComponent},
   {path: 'historial-una-mascota/:id', component: HistorialUnaMascotaComponent},
