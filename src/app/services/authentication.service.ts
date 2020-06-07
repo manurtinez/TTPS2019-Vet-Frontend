@@ -21,10 +21,15 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  public isTokenExpired() {
+  //chequea si el token expiro
+  public isTokenExpired(): boolean {
     let jwthelper: JwtHelperService = new JwtHelperService();
     const token = localStorage.getItem('token');
     return jwthelper.isTokenExpired(token);
+  }
+
+  public isLoggedIn() {
+    return localStorage.getItem('currentUser') ? true : false; 
   }
 
   login(username: string, password: string) {

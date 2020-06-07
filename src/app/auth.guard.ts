@@ -17,6 +17,6 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.isTokenExpired();
+    return !this.authService.isTokenExpired();  //esto se supone que funcionaria cuando reactivemos el JWT
   }
 }

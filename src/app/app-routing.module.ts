@@ -15,14 +15,14 @@ import { RoleGuard } from './role-guard.guard';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
-  {path: 'editar-dueno', component: EditarDuenoComponent},
-  {path: 'habilitar-veterinarios', component: HabilitarVeterinariosComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin' }},
-  {path: 'historial-eventos', component: HistorialEventosComponent},
-  {path: 'editar-mascota/:id', component: ModificarMascotaComponent},
-  {path: 'historial-una-mascota/:id', component: HistorialUnaMascotaComponent},
-  {path: 'mascotasVet-pendientes', component: MascotasVetPendientesComponent}
+  {path: 'editar-dueno', component: EditarDuenoComponent, canActivate: [RoleGuard], data: { expectedRole: ['Dueno'] }},
+  {path: 'habilitar-veterinarios', component: HabilitarVeterinariosComponent, canActivate: [RoleGuard], data: { expectedRole: ['admin'] }},
+  {path: 'historial-eventos', component: HistorialEventosComponent, canActivate: [RoleGuard], data: { expectedRole: ['Dueno', 'Veterinario'] }},
+  {path: 'editar-mascota/:id', component: ModificarMascotaComponent, canActivate: [RoleGuard], data: { expectedRole: ['Dueno', 'Veterinario'] }},
+  {path: 'historial-una-mascota/:id', component: HistorialUnaMascotaComponent, canActivate: [RoleGuard], data: { expectedRole: ['Dueno', 'Veterinario'] }},
+  {path: 'mascotasVet-pendientes', component: MascotasVetPendientesComponent, canActivate: [RoleGuard], data: { expectedRole: ['Veterinario'] }}
 ];
 
 @NgModule({
