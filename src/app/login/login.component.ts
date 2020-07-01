@@ -39,13 +39,14 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authenticationService
       .login(this.username, this.pass)
-      .pipe(
-        first(),
-        tap()
-      )
       .subscribe(
         data => {
-          this.router.navigateByUrl('/home');
+          
+          if (data.habilitado) {
+            this.router.navigateByUrl('/home');
+          } else {
+            alert('Usted no se encuentra habilitado!')
+          }
       },
       error => {
           alert('nombre de usuario o contraseña incorrecta');

@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
   {path: 'editar-dueno', component: EditarDuenoComponent, canActivate: [RoleGuard], data: { expectedRole: ['Dueno'] }},
-  {path: 'habilitar-veterinarios', component: HabilitarVeterinariosComponent, canActivate: [RoleGuard], data: { expectedRole: ['admin'] }},
+  {path: 'habilitar-veterinarios', component: HabilitarVeterinariosComponent, canActivate: [RoleGuard], data: { expectedRole: ['Admin'] }},
   {path: 'historial-eventos', component: HistorialEventosComponent, canActivate: [RoleGuard], data: { expectedRole: ['Dueno', 'Veterinario'] }},
   {path: 'editar-mascota/:id', component: ModificarMascotaComponent, canActivate: [RoleGuard], data: { expectedRole: ['Dueno', 'Veterinario'] }},
   {path: 'historial-una-mascota/:id', component: HistorialUnaMascotaComponent, canActivate: [RoleGuard], data: { expectedRole: ['Dueno', 'Veterinario'] }},

@@ -68,7 +68,7 @@
     </div>
   </ng-container>
 </div>
-<h2>Eventos Futuros de {{mascota.nombre}}</h2>
+<h2>Eventos Futuros de {{mascota?.nombre}}</h2>
 <ng-container *ngIf="posteriores === null; else post">
   <h4>No posee eventos futuros</h4>
 </ng-container>
@@ -114,7 +114,7 @@
 
 <ng-template #ant>
   <div class="mt-4">
-    <h2>Historial de Eventos de {{mascota.nombre}}</h2>
+    <h2>Historial de Eventos de {{mascota?.nombre}}</h2>
     <table class="table table-hover table-bordered">
       <thead>
         <tr>

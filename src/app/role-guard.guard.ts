@@ -14,8 +14,6 @@ export class RoleGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot) {
     const expectedRoles: string[] = route.data.expectedRole;
     const currentRole: string = JSON.parse(localStorage.getItem('currentUser')).rol;
-    console.log(expectedRoles);
-    console.log(currentRole)
 
     if(!expectedRoles.includes(currentRole) || currentRole == null) {
       alert('usted no tiene permiso para ir a esa url')

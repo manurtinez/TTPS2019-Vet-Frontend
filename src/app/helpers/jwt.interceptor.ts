@@ -13,23 +13,23 @@ export class JwtInterceptor implements HttpInterceptor {
   public jwthelper: JwtHelperService = new JwtHelperService();
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // const currentUser = this.authenticationService.currentUserValue;
-    // if (currentUser && currentUser.token) {
-    //   try {
-    //     if (this.jwthelper.isTokenExpired(currentUser.token)) {
-    //       alert('la sesion ha expirado, por favor inicie sesion de nuevo');
-    //       this.router.navigate(['login']);
-    //     }
-    //   }
-    //   catch(Error) {
-    //     alert('hubo algun problema con la sesion');
-    //   }
-    //   request = request.clone({
-    //     setHeaders: {
-    //       Authorization: `Bearer ${currentUser.token}`
-    //     }
-    //   });
-    // }
+    const currentUser = this.authenticationService.currentUserValue;
+    if (currentUser && currentUser.token) {
+      try {
+        if (this.jwthelper.isTokenExpired(currentUser.token)) {
+          alert('la sesion ha expirado, por favor inicie sesion de nuevo');
+          this.router.navigate(['login']);
+        }
+      }
+      catch(Error) {
+        alert('hubo algun problema con la sesion');
+      }
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${currentUser.token}`
+        }
+      });
+    }
     return next.handle(request);
   }
 }
