@@ -5,10 +5,7 @@
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    <li *ngFor="let m of ultimasMascotas | slice:1" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active main" id="main">
@@ -16,7 +13,8 @@
         <h1>{{ultimasMascotas[0].configFicha.nombre ? ultimasMascotas[0].nombre : 'NOMBRE PRIVADO'}}</h1>
         <h2>{{ultimasMascotas[0].configFicha.raza ? ultimasMascotas[0].raza : 'RAZA PRIVADA'}}</h2>
         <h2>{{ultimasMascotas[0].configFicha.sexo ? ultimasMascotas[0].sexo : 'SEXO PRIVADO'}}</h2>
-        <h2>{{ultimasMascotas[0].configFicha.senas ? ultimasMascotas[0].senas : 'SEÑAS PRIVADAS'}}</h2>
+        <h2>{{ultimasMascotas[0].configFicha.especie ? ultimasMascotas[0].especie : 'ESPECIE PRIVADA'}}</h2>
+        <h2>{{ultimasMascotas[0].configFicha.color ? ultimasMascotas[0].color : 'COLOR PRIVADO'}}</h2>
         <h2>
           {{ultimasMascotas[0].configFicha.nacimiento ? (ultimasMascotas[0].nacimiento | date) : 'NACIMIENTO PRIVADO'}}
         </h2>
@@ -27,7 +25,8 @@
         <h1>{{m.configFicha.nombre ? m.nombre : 'NOMBRE PRIVADO'}}</h1>
         <h2>{{m.configFicha.raza ? m.raza : 'RAZA PRIVADA'}}</h2>
         <h2>{{m.configFicha.sexo ? m.sexo : 'SEXO PRIVADO'}}</h2>
-        <h2>{{m.configFicha.senas ? m.senas : 'SEÑAS PRIVADAS'}}</h2>
+        <h2>{{ultimasMascotas[0].configFicha.especie ? ultimasMascotas[0].especie : 'ESPECIE PRIVADA'}}</h2>
+        <h2>{{ultimasMascotas[0].configFicha.color ? ultimasMascotas[0].color : 'COLOR PRIVADO'}}</h2>
         <h2>{{m.configFicha.nacimiento ? (m.nacimiento | date) : 'NACIMIENTO PRIVADO'}}</h2>
       </div>
     </div>
